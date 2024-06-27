@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventario</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="css/inventario.css">
+</head>
+<body>
+    <header>
+        <%- include('nav'); %>
+    </header>
+    <div class="container espacio">
+      <div class="login-page espacio">
+        <h1>Crear Producto</h1>
+        <br>
+        <form action="/CrearProducto" method="POST" enctype="multipart/form-data" class="form">
+          <input type="text" name="Producto" id="Producto" placeholder="Nombre del producto" required>
+          <select name="Tipo" id="Tipo" class="form-select form-select-sm" aria-label=".form-select-sm example" required onchange="showFields()">
+            <option value="Null">Categoria</option>
+            <option value="Llantas">Llantas</option>
+            <option value="Aceites">Aceites</option>
+            <option value="Repuestos">Repuestos</option>
+            <option value="Herramientas">Herramientas</option>
+          </select>
+          
+          <div id="llantas-fields" class="additional-fields" style="display: none;">
+            <input type="text" name="MarcaLlantas" id="MarcaLlantas" placeholder="Marca del producto">
+            <select name="Rin" id="Rin" class="form-select form-select-sm" aria-label=".form-select-sm example">
+              <option value="Null">Selecciona Tipo de Rin</option>
+              <option value="Rin 8">Rin 8</option>
+              <option value="Rin 10">Rin 10</option>
+              <option value="Rin 12">Rin 12</option>
+              <option value="Rin 13">Rin 13</option>
+              <option value="Rin 14">Rin 14</option>
+              <option value="Rin 15">Rin 15</option>
+              <option value="Rin 16">Rin 16</option>
+              <option value="Rin 17">Rin 17</option>
+              <option value="Rin 18">Rin 18</option>
+              <option value="Rin 19">Rin 19</option>
+              <option value="Rin 21">Rin 21</option>
+            </select>
+          </div>
+    
+          <div id="aceites-fields" class="additional-fields" style="display: none;">
+            <select name="MarcaAceites" id="MarcaAceites" class="form-select form-select-sm" aria-label=".form-select-sm example">
+              <option value="Null">Marca de aceite</option>
+              <!-- Agrega aquí las opciones de marcas -->
+            </select>
+            <select name="TipoAceite" id="TipoAceite" class="form-select form-select-sm" aria-label=".form-select-sm example">
+              <option value="Null">Tipo Aceite</option>
+              <!-- Agrega aquí las opciones de tipos de aceite -->
+            </select>
+            <select name="Viscosidad" id="Viscosidad" class="form-select form-select-sm" aria-label=".form-select-sm example">
+              <option value="Null">Viscosidad</option>
+              <!-- Agrega aquí las opciones de viscosidad -->
+            </select>
+          </div>
+    
+          <div id="repuestos-fields" class="additional-fields" style="display: none;">
+            <select name="MarcaRepuestos" id="MarcaRepuestos" class="form-select form-select-sm" aria-label=".form-select-sm example">
+              <option value="Null">Marca del repuesto</option>
+              <!-- Agrega aquí las opciones de marcas -->
+            </select>
+          </div>
+          
+          <input type="number" name="Precio" id="Precio" placeholder="Precio del producto" required>
+          <input type="number" name="Cantidad" id="Cantidad" placeholder="Cantidad unidades del producto" required>
+          <input type="text" name="Descripcion" id="Descripcion" placeholder="Descripcion del producto" required>
+          <input type="file" name="Imagen" id="Imagen" accept="image/*" required>
+          <button type="submit">Crear</button>
+        </form>
+      </div>
+    </div>
+    
+    <a href="https://wa.me//573128228680" class="whatsapp-button">
+      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
+        <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+      </svg>
+    </a>
+</body>
+<script src="js/inventario.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</html>
