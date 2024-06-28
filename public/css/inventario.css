@@ -9,6 +9,57 @@ body {
   width: 360px;
   margin: auto;
 }
+.Navegador {
+  list-style-type: none;
+  display: flex;
+  justify-content: center; 
+  background-color: #f0f0f0; 
+  padding: 0;
+  margin: 0;
+}
+
+.Navegador li {
+  padding: 10px;
+  margin: 0 15px;
+  background-color: #ffffff; 
+  border: 1px solid #cccccc; 
+  text-align: center; 
+  flex: 1;
+  max-width: 20%; 
+}
+
+.Navegador a {
+  text-decoration: none; 
+  color: #000000; 
+}
+@media (max-width: 768px) {
+  .Navegador li {
+      padding: 5px;
+      margin: 0 5px;
+      max-width: 100px; 
+  }
+  .Navegador a {
+    font-size: 0.9em; /* Reducir tamaño de fuente */
+}
+  .Navegador {
+      padding: 5px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .Navegador li {
+      padding: 3px;
+      margin: 0 3px;
+      max-width: 80px; 
+  }
+
+  .Navegador a {
+    font-size: 0.8em; /* Reducir tamaño de fuente */
+}
+  .Navegador {
+      padding: 3px 0;
+  }
+}
 .whatsapp-button {
   position: fixed;
   bottom: 20px;

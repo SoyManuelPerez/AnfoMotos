@@ -8,6 +8,18 @@ router.get('/',(req,res)=>{
 router.get('/catalogo',inventario.mostrar,(req,res)=>{
     res.render('catalogo')
 })
+router.get('/aceites',(req,res)=>{
+    res.render('aceites')
+})
+router.get('/llantas',(req,res)=>{
+    res.render('llantas')
+})
+router.get('/repuestos',(req,res)=>{
+    res.render('repuestos')
+})
+router.get('/herramientas',(req,res)=>{
+    res.render('herramientas')
+})
 router.get('/login',(req,res)=>{
     res.render('login')
 })
