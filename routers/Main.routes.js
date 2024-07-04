@@ -11,7 +11,7 @@ router.get('/catalogo',inventario.mostrar,(req,res)=>{
 router.get('/aceites',(req,res)=>{
     res.render('aceites')
 })
-router.get('/llantas',(req,res)=>{
+router.get('/llantas',inventario.mostrarllantas,(req,res)=>{
     res.render('llantas')
 })
 router.get('/repuestos',(req,res)=>{
@@ -30,6 +30,9 @@ router.get('/inventario',inventario.mostrarInventario,(req,res)=>{
     res.render('inventario')
 })
 router.get('/EliminarInvetario/:id',inventario.eliminar,(req,res)=>{
+    res.render('inventario')
+})
+router.get('/Eliminarllanta/:id',inventario.eliminarllanta,(req,res)=>{
     res.render('inventario')
 })
 router.post('/CrearProducto',inventario.Crear,(req,res)=>{

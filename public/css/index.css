@@ -89,6 +89,7 @@ h1,h2,h3 {
 }
 .boton:hover {
     cursor: pointer;
+    background-color: rgb(46, 161, 238);
 }
 /* Servicios */
 .servicios {

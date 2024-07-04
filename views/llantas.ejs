@@ -15,6 +15,20 @@
     </header>
 <div class="container espacio">
   <%- include('navcatalogo'); %>
+  <div class="container">
+    <h2>Inventario</h2>
+    <% Llantas.forEach( (Llantas) => { %>
+   <div class="card" style="width: 14rem;">
+      <img src="img/Productos/<%= Llantas.Imagen %>"  class="card-img-top" alt="Imagen del producto">
+      <div class="card-body">
+        <h5 class="card-title"><%= Llantas.Producto %></h5>
+        <p><strong>Precio:</strong> <%= Llantas.Precio %></p>
+        <p class="card-text"><%= Llantas.Descripcion %> </p>
+        <a href="/Agregarcart/<%= Llantas.id %>" class="btn btn-outline-primary">Agregar</a>
+      </div>
+    </div>
+ <% }) %>
+  </div>
 </div>
 
 

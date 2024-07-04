@@ -27,7 +27,6 @@
           </select>
           
           <div id="llantas-fields" class="additional-fields" style="display: none;">
-            <input type="text" name="MarcaLlantas" id="MarcaLlantas" placeholder="Marca del producto">
             <select name="Rin" id="Rin" class="form-select form-select-sm" aria-label=".form-select-sm example">
               <option value="Null">Selecciona Tipo de Rin</option>
               <option value="Rin 8">Rin 8</option>
@@ -45,27 +44,16 @@
           </div>
     
           <div id="aceites-fields" class="additional-fields" style="display: none;">
-            <select name="MarcaAceites" id="MarcaAceites" class="form-select form-select-sm" aria-label=".form-select-sm example">
-              <option value="Null">Marca de aceite</option>
-              <!-- Agrega aquí las opciones de marcas -->
-            </select>
             <select name="TipoAceite" id="TipoAceite" class="form-select form-select-sm" aria-label=".form-select-sm example">
               <option value="Null">Tipo Aceite</option>
-              <!-- Agrega aquí las opciones de tipos de aceite -->
+              <option value="Motor">motor</option>
             </select>
             <select name="Viscosidad" id="Viscosidad" class="form-select form-select-sm" aria-label=".form-select-sm example">
               <option value="Null">Viscosidad</option>
-              <!-- Agrega aquí las opciones de viscosidad -->
+              <option value="5W40">5W40</option>
             </select>
           </div>
-    
-          <div id="repuestos-fields" class="additional-fields" style="display: none;">
-            <select name="MarcaRepuestos" id="MarcaRepuestos" class="form-select form-select-sm" aria-label=".form-select-sm example">
-              <option value="Null">Marca del repuesto</option>
-              <!-- Agrega aquí las opciones de marcas -->
-            </select>
-          </div>
-          
+          <input type="text" name="Marca" id="Marca" placeholder="Marca del Producto" required>
           <input type="number" name="Precio" id="Precio" placeholder="Precio del producto" required>
           <input type="number" name="Cantidad" id="Cantidad" placeholder="Cantidad unidades del producto" required>
           <input type="text" name="Descripcion" id="Descripcion" placeholder="Descripcion del producto" required>
@@ -73,6 +61,53 @@
           <button type="submit">Crear</button>
         </form>
       </div>
+    </div>
+    <div class="container">
+      <h2>Inventario</h2>
+      <% Llantas.forEach( (Llantas) => { %>
+     <div class="card" style="width: 14rem;">
+        <img src="img/Productos/<%= Llantas.Imagen %>"  class="card-img-top" alt="Imagen del producto">
+        <div class="card-body">
+          <h5 class="card-title"><%= Llantas.Producto %></h5>
+          <p><strong>Precio:</strong> <%= Llantas.Precio %></p>
+          <p class="card-text"><%= Llantas.Descripcion %> </p>
+          <a href="/Agregarcart/<%= Llantas.id %>" class="btn btn-outline-primary">Agregar</a>
+        </div>
+      </div>
+   <% }) %>
+   <% Aceites.forEach( (Aceites) => { %>
+    <div class="card" style="width: 14rem;">
+       <img src="img/Productos/<%= Aceites.Imagen %>"  class="card-img-top" alt="Imagen del producto">
+       <div class="card-body">
+         <h5 class="card-title"><%= Aceites.Producto %></h5>
+         <p><strong>Precio:</strong> <%= Aceites.Precio %></p>
+         <p class="card-text"><%= Aceites.Descripcion %> </p>
+         <a href="/Agregarcart/<%= Llantas.id %>" class="btn btn-outline-primary">Agregar</a>
+       </div>
+     </div>
+  <% }) %>
+  <% Herramientas.forEach( (Herramientas) => { %>
+    <div class="card" style="width: 14rem;">
+       <img src="img/Productos/<%= Herramientas.Imagen %>"  class="card-img-top" alt="Imagen del producto">
+       <div class="card-body">
+         <h5 class="card-title"><%= Herramientas.Producto %></h5>
+         <p><strong>Precio:</strong> <%= Herramientas.Precio %></p>
+         <p class="card-text"><%= Herramientas.Descripcion %> </p>
+         <a href="/Agregarcart/<%= Llantas.id %>" class="btn btn-outline-primary">Agregar</a>
+       </div>
+     </div>
+  <% }) %>
+  <% Repuestos.forEach( (Repuestos) => { %>
+    <div class="card" style="width: 14rem;">
+       <img src="img/Productos/<%= Repuestos.Imagen %>"  class="card-img-top" alt="Imagen del producto">
+       <div class="card-body">
+         <h5 class="card-title"><%= Repuestos.Producto %></h5>
+         <p><strong>Precio:</strong> <%= Repuestos.Precio %></p>
+         <p class="card-text"><%= Repuestos.Descripcion %> </p>
+         <a href="/Agregarcart/<%= Llantas.id %>" class="btn btn-outline-primary">Agregar</a>
+       </div>
+     </div>
+  <% }) %>
     </div>
 </body>
 <script src="js/inventario.js"></script>
