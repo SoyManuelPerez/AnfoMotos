@@ -38,7 +38,7 @@ module.exports.Crear = async (req, res) => {
         Imagen,
         Descripcion
       });
-    }else if (Tipo == "Aceites"){
+    console.log("entre en llantras")}else if (Tipo == "Aceites"){
       const TipoAceite =req.body.TipoAceite;
       const Viscosidad = req.body.Viscosidad
        newProducto = new Aceite({

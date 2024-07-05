@@ -63,6 +63,12 @@ body {
       padding: 3px 0;
   }
 }
+@media (max-width: 575.98px) {
+  .col-custom {
+    flex: 0 0 33.3333%;
+    max-width: 33.3333%;
+  }
+}
 .whatsapp-button {
   position: fixed;
   bottom: 20px;
