@@ -13,26 +13,27 @@ body {
   list-style-type: none;
   display: flex;
   justify-content: center; 
-  background-color: #f0f0f0; 
+  background-color: #ffffff; 
+  color: #ffffff;
   padding: 0;
   margin: 0;
 }
 
 .Navegador li {
   padding: 10px;
-  margin: 0 15px;
-  background-color: #ffffff; 
+  background-color: #02539B; 
   border: 1px solid #cccccc; 
+  color: #ffffffff;
   text-align: center; 
   flex: 1;
   max-width: 20%; 
 }
 .Navegador :hover{
-  background-color: rgb(234, 250, 11);
+  background-color: #fcc203;
 }
 .Navegador a {
   text-decoration: none; 
-  color: #000000; 
+  color: black; 
 }
 @media (max-width: 768px) {
   .Navegador li {

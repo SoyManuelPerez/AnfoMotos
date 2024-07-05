@@ -3,7 +3,7 @@
     --blanco: #ffffff;
     --oscuro: #212121;
     --primario: #FFC107;
-    --secundario: rgb(85, 177, 238);
+    --secundario: #02539B;
     --gris: #757575;
     --grisClaro: #DFE9F3;
 }
@@ -89,7 +89,7 @@ h1,h2,h3 {
 }
 .boton:hover {
     cursor: pointer;
-    background-color: rgb(46, 161, 238);
+    background-color: #fcc203;
 }
 /* Servicios */
 .servicios {
@@ -119,7 +119,7 @@ h1,h2,h3 {
 .servicio .iconos {
     height: 6rem;
     width: 6rem;
-    background-color: rgb(85, 177, 238);
+    background-color: #02539B;
     border-radius: 50%;
     display: flex;
     justify-content: space-evenly;

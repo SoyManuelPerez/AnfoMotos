@@ -163,11 +163,47 @@ module.exports.mostrarllantas = (req, res) => {
     res.status(500).send('Error mostrando datos');
   });
 };
+module.exports.mostrarAceite = (req, res) => {
+  Aceite.find().then(result => result || [])
+.then((result) => {
+  res.render('aceites', {
+    Aceites: result
+  });
+})
+.catch(err => {
+  console.error('Error mostrando datos', err);
+  res.status(500).send('Error mostrando datos');
+});
+};
+module.exports.mostrarRepuestos = (req, res) => {
+  Productos.find({Tipo: 'Repuestos'}).then(result => result || [])
+.then((result) => {
+  res.render('repuestos', {
+    Repuestos: result
+  });
+})
+.catch(err => {
+  console.error('Error mostrando datos', err);
+  res.status(500).send('Error mostrando datos');
+});
+};
+module.exports.mostrarHeramientas = (req, res) => {
+  Productos.find({Tipo: 'Herramientas'}).then(result => result || [])
+.then((result) => {
+  res.render('herramientas', {
+    Herramientas: result
+  });
+})
+.catch(err => {
+  console.error('Error mostrando datos', err);
+  res.status(500).send('Error mostrando datos');
+});
+};
 //Mostrar en inventario
 module.exports.mostrarInventario = (req, res) => {
   Promise.all([
     Llanta.find().then(result => result || []),
-    Aceite.find({Tipo: 'Aceites'}).then(result => result || []),
+    Aceite.find().then(result => result || []),
     Productos.find({Tipo: 'Herramientas'}).then(result => result || []),
     Productos.find({Tipo: 'Repuestos'}).then(result => result || [])
   ])
