@@ -62,6 +62,9 @@ body {
   .Navegador {
       padding: 3px 0;
   }
+  .espacio {
+    margin-top: 130px;
+  }
 }
 
 .whatsapp-button {
