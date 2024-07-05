@@ -39,6 +39,7 @@
                 <div class="card-body">
                   <h5 class="card-title"><%= Aceite.Producto %></h5>
                   <p class="card-text"><%= Aceite.Descripcion %></p>
+                  <p class="card-text">Viscosidad <%= Aceite.Viscosidad%></p>
                   <p  class="Precio">$<%= Aceite.Precio.toLocaleString('es-CO') %> COP</p>
                   <a href="/Agregarcart/<%= Aceite.id %>" class="btn-agregar">Agregar al carrito</a>
                 </div>
