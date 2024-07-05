@@ -138,7 +138,7 @@ module.exports.mostrar = (req, res) => {
     Productos.find({Tipo: 'Herramientas'}).then(result => result || []),
     Productos.find({Tipo: 'Repuestos'}).then(result => result || [])
   ])
-  .then(([Llantas, Herramientas, Aceites, Repuestos]) => {
+  .then(([Llantas,Aceites, Herramientas,  Repuestos]) => {
     res.render('catalogo', {
       Llantas: Llantas,
       Aceites: Aceites,

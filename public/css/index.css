@@ -87,6 +87,27 @@ h1,h2,h3 {
     padding-left: 5px;
     padding-right: 5px;
 }
+.btn-agregar {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0056b3; 
+    color: white; 
+    text-align: center;
+    text-decoration: none; 
+    font-weight: bold;
+    border-radius: 4px; 
+    transition: background-color 0.3s; 
+  }
+  .card-title{
+    font-weight: bold;
+  }
+  .btn-agregar:hover {
+    background-color: #003d80; /* Color de fondo azul más oscuro al pasar el ratón */
+  }
+.Precio{
+    color: #02539B;
+    font-weight: bold;
+}
 .boton:hover {
     cursor: pointer;
     background-color: #fcc203;
