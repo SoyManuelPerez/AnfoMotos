@@ -24,7 +24,7 @@
                 <img src="img/Productos/<%= Llanta.Imagen %>" class="card-img-top" alt="Imagen del producto">
                 <div class="card-body">
                   <h5 class="card-title"><%= Llanta.Producto %></h5>
-                  <p><strong>Precio:</strong> <%= Llanta.Precio %></p>
+                  <p><strong>Precio:</strong>$<%= Llanta.Precio.toLocaleString('es-CO') %> COP</p>
                   <p class="card-text"><%= Llanta.Descripcion %></p>
                   <a href="/Agregarcart/<%= Llanta.id %>" class="btn btn-outline-primary">Agregar</a>
                 </div>
@@ -38,9 +38,9 @@
                 <img src="img/Productos/<%= Aceite.Imagen %>" class="card-img-top" alt="Imagen del producto">
                 <div class="card-body">
                   <h5 class="card-title"><%= Aceite.Producto %></h5>
-                  <p><strong>Precio:</strong> <%= Aceite.Precio %></p>
+                  <p><strong>Precio:</strong>$<%= Aceite.Precio.toLocaleString('es-CO') %> COP</p>
                   <p class="card-text"><%= Aceite.Descripcion %></p>
-                  <a href="/Agregarcart/<%= Aceite.id %>" class="btn btn-outline-primary">Agregar</a>
+                  <a href="/Agregarcart/<%= Aceite.id %>" class="boton">Agregar Aceite</a>
                 </div>
               </div>
             </div>
@@ -52,7 +52,7 @@
                 <img src="img/Productos/<%= Herramienta.Imagen %>" class="card-img-top" alt="Imagen del producto">
                 <div class="card-body">
                   <h5 class="card-title"><%= Herramienta.Producto %></h5>
-                  <p><strong>Precio:</strong> <%= Herramienta.Precio %></p>
+                  <p><strong>Precio:</strong>$ <%= Herramienta.Precio.toLocaleString('es-CO') %> COP</p>
                   <p class="card-text"><%= Herramienta.Descripcion %></p>
                   <a href="/Agregarcart/<%= Herramienta.id %>" class="btn btn-outline-primary">Agregar</a>
                 </div>
@@ -66,7 +66,7 @@
                 <img src="img/Productos/<%= Repuesto.Imagen %>" class="card-img-top" alt="Imagen del producto">
                 <div class="card-body">
                   <h5 class="card-title"><%= Repuesto.Producto %></h5>
-                  <p><strong>Precio:</strong> <%= Repuesto.Precio %></p>
+                  <p><strong>Precio:</strong> $<%= Repuesto.Precio.toLocaleString('es-CO') %> COP</p>
                   <p class="card-text"><%= Repuesto.Descripcion %></p>
                   <a href="/Agregarcart/<%= Repuesto.id %>" class="btn btn-outline-primary">Agregar</a>
                 </div>

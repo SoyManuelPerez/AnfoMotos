@@ -44,10 +44,7 @@
           </div>
     
           <div id="aceites-fields" class="additional-fields" style="display: none;">
-            <select name="TipoAceite" id="TipoAceite" class="form-select form-select-sm" aria-label=".form-select-sm example">
-              <option value="Null">Tipo Aceite</option>
-              <option value="Motor">motor</option>
-            </select>
+            <input type="text" name="Tipo Aceite" id="Tipo Aceite" placeholder="Tipo de Aceite" required>
             <select name="Viscosidad" id="Viscosidad" class="form-select form-select-sm" aria-label=".form-select-sm example">
               <option value="Null">Viscosidad</option>
               <option value="5W40">5W40</option>
@@ -55,7 +52,6 @@
           </div>
           <input type="text" name="Marca" id="Marca" placeholder="Marca del Producto" required>
           <input type="number" name="Precio" id="Precio" placeholder="Precio del producto" required>
-          <input type="number" name="Cantidad" id="Cantidad" placeholder="Cantidad unidades del producto" required>
           <input type="text" name="Descripcion" id="Descripcion" placeholder="Descripcion del producto" required>
           <input type="file" name="Imagen" id="Imagen" accept="image/*" required>
           <button type="submit">Crear</button>
@@ -71,7 +67,7 @@
           <h5 class="card-title"><%= Llantas.Producto %></h5>
           <p><strong>Precio:</strong> <%= Llantas.Precio %></p>
           <p class="card-text"><%= Llantas.Descripcion %> </p>
-          <a href="/Agregarcart/<%= Llantas.id %>" class="btn btn-outline-primary">Agregar</a>
+          <a href="/Eliminar/<%= Llantas.id %>" class="btn btn-outline-danger">Eliminar</a>
         </div>
       </div>
    <% }) %>
@@ -82,7 +78,7 @@
          <h5 class="card-title"><%= Aceites.Producto %></h5>
          <p><strong>Precio:</strong> <%= Aceites.Precio %></p>
          <p class="card-text"><%= Aceites.Descripcion %> </p>
-         <a href="/Agregarcart/<%= Llantas.id %>" class="btn btn-outline-primary">Agregar</a>
+         <a href="/Eliminar/<%= Llantas.id %>" class="btn btn-outline-danger">Eliminar</a>
        </div>
      </div>
   <% }) %>
@@ -93,7 +89,7 @@
          <h5 class="card-title"><%= Herramientas.Producto %></h5>
          <p><strong>Precio:</strong> <%= Herramientas.Precio %></p>
          <p class="card-text"><%= Herramientas.Descripcion %> </p>
-         <a href="/Agregarcart/<%= Llantas.id %>" class="btn btn-outline-primary">Agregar</a>
+         <a href="/Eliminar/<%= Llantas.id %>" class="btn btn-outline-danger">Eliminar</a>
        </div>
      </div>
   <% }) %>
@@ -104,7 +100,7 @@
          <h5 class="card-title"><%= Repuestos.Producto %></h5>
          <p><strong>Precio:</strong> <%= Repuestos.Precio %></p>
          <p class="card-text"><%= Repuestos.Descripcion %> </p>
-         <a href="/Agregarcart/<%= Llantas.id %>" class="btn btn-outline-primary">Agregar</a>
+         <a href="/Eliminar/<%= Llantas.id %>" class="btn btn-outline-danger">Eliminar</a>
        </div>
      </div>
   <% }) %>
