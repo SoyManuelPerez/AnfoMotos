@@ -17,19 +17,18 @@
   <%- include('navcatalogo'); %>
   <div class="container">
     <h2>Aceites</h2>
- <% Aceites.forEach( (Aceites) => { %>
-  <div class="card" style="width: 13rem;">
-     <img src="img/Productos/<%= Aceites.Imagen %>"  class="card-img-top" alt="Imagen del producto">
-     <div class="card-body">
-       <h5 class="card-title"><%= Aceites.Producto %></h5>
-       <p><strong>Precio:</strong> <%= Aceites.Precio %></p>
-       <p class="card-text"><%= Aceites.Descripcion %> </p>
-       <a href="/Agregarcart/<%= Aceites.id %>" class="btn btn-outline-primary">Agregar</a>
-     </div>
-   </div>
-<% }) %>
-
-
+    <% Aceites.forEach( (Aceite) => { %>
+      <div class="col-md-3">
+        <div class="card mb-3" style="width: 13rem;">
+          <img src="img/Productos/<%= Aceite.Imagen %>" class="card-img-top" alt="Imagen del producto">
+          <div class="card-body">
+            <h5 class="card-title"><%= Aceite.Producto %></h5>
+            <p  class="Precio">$<%= Aceite.Precio.toLocaleString('es-CO') %> COP</p>
+            <a href="/Agregarcart/<%= Aceite.id %>" class="btn-agregar">Agregar al carrito</a>
+          </div>
+        </div>
+      </div>
+    <% }) %>
   </div>
 </div>
 

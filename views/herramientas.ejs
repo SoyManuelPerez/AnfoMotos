@@ -17,17 +17,18 @@
   <%- include('navcatalogo'); %>
   <div class="container">
     <h2>Herramientas</h2>
-<% Herramientas.forEach( (Herramientas) => { %>
-  <div class="card" style="width: 13rem;">
-     <img src="img/Productos/<%= Herramientas.Imagen %>"  class="card-img-top" alt="Imagen del producto">
-     <div class="card-body">
-       <h5 class="card-title"><%= Herramientas.Producto %></h5>
-       <p><strong>Precio:</strong> <%= Herramientas.Precio %></p>
-       <p class="card-text"><%= Herramientas.Descripcion %> </p>
-       <a href="/Agregarcart/<%= Herramientas.id %>" class="btn btn-outline-primary">Agregar</a>
-     </div>
-   </div>
-<% }) %>
+    <% Herramientas.forEach( (Herramienta) => { %>
+      <div class="col-md-3">
+        <div class="card mb-3" style="width: 13rem;">
+          <img src="img/Productos/<%= Herramienta.Imagen %>" class="card-img-top" alt="Imagen del producto">
+          <div class="card-body">
+            <h5 class="card-title"><%= Herramienta.Producto %></h5>
+            <p  class="Precio">$ <%= Herramienta.Precio.toLocaleString('es-CO') %> COP</p>
+            <a href="/Agregarcart/<%= Herramienta.id %>" class="btn-agregar">Agregar al carrito</a>
+          </div>
+        </div>
+      </div>
+    <% }) %>
   </div>
 </div>
 
