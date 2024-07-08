@@ -20,9 +20,10 @@
       <input type="text" id="searchInput" class="form-control" placeholder="Buscar productos...">
     </div>
   </div>
-  <div class="container">
+  <div class="container ">
+    <div class="row" id="productContainer">
     <% Aceites.forEach( (Aceite) => { %>
-      <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+      <div class="col-lg-3 col-md-4 col-sm-6 col-6 product-card">
         <div class="card mb-3" style="width: 100%;">
           <img src="img/Productos/<%= Aceite.Imagen %>" class="card-img-top" alt="Imagen del producto">
           <div class="card-body">
@@ -34,6 +35,10 @@
       </div>
     <% }) %>
   </div>
+    <div id="noProductMessage" class="text-center mt-4" style="display: none;">
+      <h1>Producto no encontrado.</h1>
+    </div>
+</div>
 </div>
 
 <br>
@@ -51,5 +56,4 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
 </html>
