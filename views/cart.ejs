@@ -17,30 +17,33 @@
     <div class="espacio">
         <div class="container mt-5">
             <h1 class="text-center">¿Listo para cotizar?</h1>
-            <div class="text-end total-price mb-4">total: $total del producto en venta COP</div>
+            <% let valor = 0 %>
+            <% Cart.forEach( (Cart) => { %>
             <div class="card mb-3">
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-2">
-                            <img src="path/to/your/image.jpg" class="card-img-top" alt="Imagen del producto">
+                            <img src="img/Productos/<%= Cart.Imagen %>" class="card-img-top" alt="Imagen del producto">
                         </div>
                         <div class="col-4 product-details">
-                            <h5>Nombre del producto</h5>
+                            <h5><%= Cart.Producto %></h5>
                         </div>
                         <div class="col-2 text-center">
-                            <p>$costo del producto COP cada</p>
+                            <p>$ <%= Cart.Precio.toLocaleString('es-CO') %> COP cada</p>
                         </div>
                         <div class="col-2 text-center quantity-control">
                             <input type="number" value="1" class="form-control">
                         </div>
                         <div class="col-2 text-end">
-                            <p>$total del producto COP</p>
-                            <a href="#" class="text-danger">Remover</a>
+                            <p>$<%= Cart.Precio.toLocaleString('es-CO') %> COP</p>
+                            <a href="/eliminarcart/<%= Cart.id %>" class="text-danger">Remover</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="text-end total-price mt-4">total: $total del producto en venta COP</div>
+            <% valor += Cart.Precio  %>
+            <% }) %>
+            <div class="text-end total-price mt-4">total: $<%= valor.toLocaleString('es-CO') %> COP</div>
             <div class="text-center mt-4">
                 <button class="btn btn-primary">Cotizar</button>
             </div>

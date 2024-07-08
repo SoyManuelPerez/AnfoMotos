@@ -1,6 +1,4 @@
 const Productos = require('../models/Productos')
-const Aceite = require('../models/Aceite')
-const Llanta = require('../models/Llanta')
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs')
@@ -23,46 +21,8 @@ module.exports.Crear = async (req, res) => {
     const Producto = req.body.Producto;
     const Precio = req.body.Precio;
     const Tipo = req.body.Tipo;
-    const Descripcion = req.body.Descripcion;
-    const Marca = req.body.Marca
-    let newProducto
     const Imagen = req.file ? req.file.filename : '';
-    if(Tipo == "Llantas"){
-      const Rin = req.body.Rin
-       newProducto = new Llanta({
-        Producto,
-        Rin,
-        Precio,
-        Tipo,
-        Marca,
-        Imagen,
-        Descripcion
-      });
-    console.log("entre en llantras")}else if (Tipo == "Aceites"){
-      const TipoAceite =req.body.TipoAceite;
-      const Viscosidad = req.body.Viscosidad
-       newProducto = new Aceite({
-        Producto,
-        TipoAceite,
-        Viscosidad,
-        Marca,
-        Precio,
-        Tipo,
-        Marca,
-        Imagen,
-        Descripcion
-      });
-    }
-   else if (Tipo == "Herramienta" || Tipo == "Repuestos" ){
-       newProducto = new Productos({
-        Producto,
-        Precio,
-        Tipo,
-        Marca,
-        Imagen,
-        Descripcion
-      });
-    }
+     const  newProducto = new Productos({Producto,Precio,Tipo,Imagen,});
     try {
       await newProducto.save();
       res.redirect('/inventario');
@@ -73,26 +33,6 @@ module.exports.Crear = async (req, res) => {
   });
 };
 //Eliminar Producto
-module.exports.eliminarllanta = (req,res) =>{
-    const id = req.params.id
-    Llanta.findById({_id:id}).exec()
-  .then(resultado => {
-    const foto = resultado.Imagen
-    const absolutePath = path.resolve(__dirname, '../public/img/Productos/',foto);
-    fs.unlink(absolutePath, (err) => {
-      if (err) {
-        console.error('Error al eliminar el archivo:', err);
-        return res.status(500).send('Error al eliminar el archivo.');
-      }
-    });
-    Llanta.findByIdAndDelete({_id:id}).exec()
-    console.log("Objeto eliminado : ", resultado); 
-  })
-  .catch(error => {
-    console.log(error) 
-  });
-    res.redirect('/inventario')       
-}
 module.exports.eliminar = (req,res) =>{
   const id = req.params.id
   Productos.findById({_id:id}).exec()
@@ -133,8 +73,8 @@ module.exports.editar = (req,res) =>{
 //Mostrar productos 
 module.exports.mostrar = (req, res) => {
   Promise.all([
-    Llanta.find().then(result => result || []),
-    Aceite.find({Tipo: 'Aceites'}).then(result => result || []),
+    Productos.find({Tipo: 'Llantas'}).then(result => result || []),
+    Productos.find({Tipo: 'Aceites'}).then(result => result || []),
     Productos.find({Tipo: 'Herramientas'}).then(result => result || []),
     Productos.find({Tipo: 'Repuestos'}).then(result => result || [])
   ])
@@ -152,7 +92,7 @@ module.exports.mostrar = (req, res) => {
   });
 };
 module.exports.mostrarllantas = (req, res) => {
-    Llanta.find().then(result => result || [])
+  Productos.find({Tipo: 'Llantas'}).then(result => result || [])
   .then((result) => {
     res.render('llantas', {
       Llantas: result
@@ -164,7 +104,7 @@ module.exports.mostrarllantas = (req, res) => {
   });
 };
 module.exports.mostrarAceite = (req, res) => {
-  Aceite.find().then(result => result || [])
+  Productos.find({Tipo: 'Aceites'}).then(result => result || [])
 .then((result) => {
   res.render('aceites', {
     Aceites: result
@@ -202,12 +142,12 @@ module.exports.mostrarHeramientas = (req, res) => {
 //Mostrar en inventario
 module.exports.mostrarInventario = (req, res) => {
   Promise.all([
-    Llanta.find().then(result => result || []),
-    Aceite.find().then(result => result || []),
+    Productos.find({Tipo: 'Llantas'}).then(result => result || []),
+    Productos.find({Tipo: 'Aceites'}).then(result => result || []),
     Productos.find({Tipo: 'Herramientas'}).then(result => result || []),
     Productos.find({Tipo: 'Repuestos'}).then(result => result || [])
   ])
-  .then(([Llantas, Herramientas, Aceites, Repuestos]) => {
+  .then(([Llantas,Aceites, Herramientas,  Repuestos]) => {
     res.render('inventario', {
       Llantas: Llantas,
       Aceites: Aceites,

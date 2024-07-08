@@ -6,7 +6,7 @@ const router = express.Router()
 router.get('/',Cart.Cookie,(req,res)=>{
     res.render('index')
 })
-router.get('/cart',(req,res)=>{
+router.get('/cart',Cart.mostrar,(req,res)=>{
     res.render('cart')
 })
 router.get('/catalogo',inventario.mostrar,(req,res)=>{
@@ -36,10 +36,14 @@ router.get('/inventario',inventario.mostrarInventario,(req,res)=>{
 router.get('/EliminarInvetario/:id',inventario.eliminar,(req,res)=>{
     res.render('inventario')
 })
-router.get('/Eliminarllanta/:id',inventario.eliminarllanta,(req,res)=>{
-    res.render('inventario')
+router.get('/eliminarcart/:id',Cart.Eliminarcart,(req,res)=>{
+    res.render('cart')
+})
+router.get('/Agregarcart/:id',Cart.Crear,(req,res)=>{
+    res.render('cart')
 })
 router.post('/CrearProducto',inventario.Crear,(req,res)=>{
     res.render('inventario')})
 router.post('/login',login.Login)
+
 module.exports= router
