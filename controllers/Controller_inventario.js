@@ -1,4 +1,5 @@
 const Productos = require('../models/Productos')
+const Carrito = require('../models/cart');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs')
@@ -72,18 +73,21 @@ module.exports.editar = (req,res) =>{
 }
 //Mostrar productos 
 module.exports.mostrar = (req, res) => {
+  const Cart = req.cookies.Anfomotos;
   Promise.all([
     Productos.find({Tipo: 'Llantas'}).then(result => result || []),
     Productos.find({Tipo: 'Aceites'}).then(result => result || []),
     Productos.find({Tipo: 'Herramientas'}).then(result => result || []),
-    Productos.find({Tipo: 'Repuestos'}).then(result => result || [])
+    Productos.find({Tipo: 'Repuestos'}).then(result => result || []),
+    Carrito.find({Cart: Cart}).then(result => result || [])
   ])
-  .then(([Llantas,Aceites, Herramientas,  Repuestos]) => {
+  .then(([Llantas,Aceites, Herramientas,  Repuestos,Cart]) => {
     res.render('catalogo', {
       Llantas: Llantas,
       Aceites: Aceites,
       Herramientas: Herramientas,
-      Repuestos: Repuestos
+      Repuestos: Repuestos,
+      Cart:Cart
     });
   })
   .catch(err => {
