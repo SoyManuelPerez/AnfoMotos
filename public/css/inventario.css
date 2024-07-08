@@ -66,7 +66,32 @@ body {
     margin-top: 130px;
   }
 }
+/* Asegúrate de que el carrito esté posicionado en la parte superior derecha */
+.cart {
+  position: fixed;
+  top: 130px;
+  right: 50px;
+  z-index: 2000; /* Un valor mayor para asegurarse de que se superpone a otros elementos */
+}
 
+.cart .notification {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+}
+
+/* Ajustes específicos para dispositivos móviles */
+@media (max-width: 768px) {
+  .cart {
+    top: 40px; /* Ajusta según sea necesario para que se vea bien en móvil */
+    right: 90px; /* Ajusta según sea necesario para que se vea bien en móvil */
+  }
+}
 .whatsapp-button {
   position: fixed;
   bottom: 10px;
