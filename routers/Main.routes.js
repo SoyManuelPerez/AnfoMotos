@@ -1,8 +1,9 @@
 const express = require('express')
 const login = require('../controllers/Controller_Login')
 const inventario = require('../controllers/Controller_inventario')
+const Cart = require('../controllers/Controller_cart')
 const router = express.Router()
-router.get('/',(req,res)=>{
+router.get('/',Cart.Cookie,(req,res)=>{
     res.render('index')
 })
 router.get('/cart',(req,res)=>{
