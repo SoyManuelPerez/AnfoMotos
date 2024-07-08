@@ -21,7 +21,6 @@
       </div>
     </div>
     <div class="container">
-      <h2>Productos</h2>
       <div class="row" id="productContainer">
         <!-- Tus productos se renderizan aquí -->
         <% Llantas.forEach( (Llanta) => { %>
@@ -72,6 +71,9 @@
             </div>
           </div>
         <% }) %>
+      </div>
+      <div id="noProductMessage" class="text-center mt-4" style="display: none;">
+        <h1>Producto no encontrado.</h1>
       </div>
     </div>
   </div>
