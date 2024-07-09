@@ -186,12 +186,4 @@ h1,h2,h3 {
     margin: 0;
   }
 
-  @media (max-width: 767px) {
-    .card-body {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-  }
-
   
