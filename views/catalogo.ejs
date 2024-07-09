@@ -63,8 +63,8 @@
                 <p class="Precio">$<%= Aceite.Precio.toLocaleString('es-CO') %> COP</p>
                 <form action="/Agregarcart/<%= Aceite.id %>" method="POST">
                   <div class="cantidad-container">
-                    <label for="cantidad-<%= Aceite.id %>" class="form-label">Cantidad</label>
-                    <input type="number" name="cantidad" id="cantidad-<%= Aceite.id %>" class="form-control" placeholder="Cantidad" min="1" value="1">
+                    <label for="cantidad-<%= Aceite.id %>" class="cantidad-label">Cantidad</label>
+                    <input type="number" name="cantidad" id="cantidad-<%= Aceite.id %>" class="form-control cantidad-input" placeholder="Cantidad" min="1" value="1">
                   </div>
                   <button type="submit" class="btn-agregar btn btn-primary">Agregar al carrito</button>
                 </form>
@@ -81,8 +81,8 @@
                 <p class="Precio">$ <%= Herramienta.Precio.toLocaleString('es-CO') %> COP</p>
                 <form action="/Agregarcart/<%= Herramienta.id %>" method="POST">
                   <div class="cantidad-container">
-                    <label for="cantidad-<%= Herramienta.id %>" class="form-label">Cantidad</label>
-                    <input type="number" name="cantidad" id="cantidad-<%= Herramienta.id %>" class="form-control" placeholder="Cantidad" min="1" value="1">
+                    <label for="cantidad-<%= Herramienta.id %>" class="cantidad-label">Cantidad</label>
+                    <input type="number" name="cantidad" id="cantidad-<%= Herramienta.id %>" class="form-control cantidad-input" placeholder="Cantidad" min="1" value="1">
                   </div>
                   <button type="submit" class="btn-agregar btn btn-primary">Agregar al carrito</button>
                 </form>
@@ -99,8 +99,8 @@
                 <p class="Precio">$<%= Repuesto.Precio.toLocaleString('es-CO') %> COP</p>
                 <form action="/Agregarcart/<%= Repuesto.id %>" method="POST">
                   <div class="cantidad-container">
-                    <label for="cantidad-<%= Repuesto.id %>" class="form-label">Cantidad</label>
-                    <input type="number" name="cantidad" id="cantidad-<%= Repuesto.id %>" class="form-control" placeholder="Cantidad" min="1" value="1">
+                    <label for="cantidad-<%= Repuesto.id %>" class="cantidad-label">Cantidad</label>
+                    <input type="number" name="cantidad" id="cantidad-<%= Repuesto.id %>" class="form-control cantidad-input" placeholder="Cantidad" min="1" value="1">
                   </div>
                   <button type="submit" class="btn-agregar btn btn-primary">Agregar al carrito</button>
                 </form>
