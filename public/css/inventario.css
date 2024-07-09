@@ -91,6 +91,9 @@ body {
     top: 40px; /* Ajusta según sea necesario para que se vea bien en móvil */
     right: 90px; /* Ajusta según sea necesario para que se vea bien en móvil */
   }
+  .espacio {
+    margin-top: 150px;
+  }
 }
 .whatsapp-button {
   position: fixed;

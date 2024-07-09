@@ -23,16 +23,38 @@ module.exports.Crear = async (req, res) => {
     const Precio = req.body.Precio;
     const Tipo = req.body.Tipo;
     const Imagen = req.file ? req.file.filename : '';
-     const  newProducto = new Productos({Producto,Precio,Tipo,Imagen,});
+    const newProducto = new Productos({ Producto, Precio, Tipo, Imagen });
+    
     try {
       await newProducto.save();
+      // Llama a la función para actualizar Git
+      updateGitRepo();
       res.redirect('/inventario');
     } catch (error) {
       res.status(500).send("Error al guardar el producto.");
-      console.log(error)
+      console.log(error);
     }
   });
 };
+
+// Función para ejecutar comandos de Git
+function updateGitRepo() {
+  // Comandos de Git para agregar, hacer commit y empujar los cambios
+  const gitCommands = `
+    git add .
+    git commit -m "Actualización automática: nuevo producto agregado"
+    git push origin main
+  `;
+
+  exec(gitCommands, (err, stdout, stderr) => {
+    if (err) {
+      console.error(`Error al ejecutar comandos de Git: ${err.message}`);
+      return;
+    }
+    console.log(`Git output: ${stdout}`);
+    console.error(`Git error: ${stderr}`);
+  });
+}
 //Eliminar Producto
 module.exports.eliminar = (req,res) =>{
   const id = req.params.id
