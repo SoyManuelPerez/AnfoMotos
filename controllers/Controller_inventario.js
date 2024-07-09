@@ -40,20 +40,36 @@ module.exports.Crear = async (req, res) => {
 
 // Función para ejecutar comandos de Git
 function updateGitRepo() {
-  // Comandos de Git para agregar, hacer commit y empujar los cambios
-  const gitCommands = `
-    git add .
-    git commit -m "Actualización automática: nuevo producto agregado"
-    git push origin main
-  `;
-
-  exec(gitCommands, (err, stdout, stderr) => {
+  // Configurar la identidad del usuario
+  exec('git config --global user.email "Soy_ManuelPerez@outlook.com" && git config --global user.name "SoyManuelPerez"', (err, stdout, stderr) => {
     if (err) {
-      console.error(`Error al ejecutar comandos de Git: ${err.message}`);
+      console.error(`Error configurando el usuario de Git: ${err.message}`);
       return;
     }
-    console.log(`Git output: ${stdout}`);
-    console.error(`Git error: ${stderr}`);
+    console.log(`Configuración de usuario de Git: ${stdout}`);
+    // Configurar el repositorio remoto
+    exec('git remote add origin https://github.com/SoyManuelPerez/AnfoMotos', (err, stdout, stderr) => {
+      if (err && !stderr.includes("remote origin already exists")) {
+        console.error(`Error configurando el repositorio remoto: ${err.message}`);
+        return;
+      }
+      console.log(`Configuración del repositorio remoto: ${stdout}`);
+      // Comandos de Git para agregar, hacer commit y empujar los cambios
+      const gitCommands = `
+        git add .
+        git commit -m "Actualización automática: nuevo producto agregado"
+        git push origin main
+      `;
+
+      exec(gitCommands, (err, stdout, stderr) => {
+        if (err) {
+          console.error(`Error al ejecutar comandos de Git: ${err.message}`);
+          return;
+        }
+        console.log(`Git output: ${stdout}`);
+        console.error(`Git error: ${stderr}`);
+      });
+    });
   });
 }
 //Eliminar Producto
