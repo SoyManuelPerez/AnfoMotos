@@ -48,7 +48,8 @@
                 <h5 class="card-title"><%= Llanta.Producto %></h5>
                 <p class="Precio">$<%= Llanta.Precio.toLocaleString('es-CO') %> COP</p>
                  <a href="/EliminarProducto/<%= Llanta.id %>"><button type="submit" class="btn-agregar btn btn-danger">Eliminar</button></a> 
-              </div>
+                 <a href="/EditarProducto/<%= Llanta.id %>"><button type="submit" class="btn-agregar btn btn-primary">Actualizar</button></a>
+                </div>
             </div>
           </div>
         <% }) %>
@@ -60,6 +61,7 @@
                 <h5 class="card-title"><%= Aceite.Producto %></h5>
                 <p class="Precio">$<%= Aceite.Precio.toLocaleString('es-CO') %> COP</p>
                 <a href="/EliminarProducto/<%= Aceite.id %>"><button type="submit" class="btn-agregar btn btn-danger">Eliminar</button></a>
+                <a href="/EditarProducto/<%= Aceite.id %>"><button type="submit" class="btn-agregar btn btn-primary">Actualizar</button></a>
               </div>
             </div>
           </div>
@@ -72,6 +74,7 @@
                 <h5 class="card-title"><%= Herramienta.Producto %></h5>
                 <p class="Precio">$ <%= Herramienta.Precio.toLocaleString('es-CO') %> COP</p>
                 <a href="/EliminarProducto/<%= Herramienta.id %>"><button type="submit" class="btn-agregar btn btn-danger">Eliminar</button></a>
+                <a href="/EditarProducto/<%= Herramienta.id %>"><button type="submit" class="btn-agregar btn btn-primary">Actualizar</button></a>
               </div>
             </div>
           </div>
@@ -84,6 +87,7 @@
                 <h5 class="card-title"><%= Repuesto.Producto %></h5>
                 <p class="Precio">$<%= Repuesto.Precio.toLocaleString('es-CO') %> COP</p>
                 <a href="/EliminarProducto/<%= Repuesto.id %>"><button type="submit" class="btn-agregar btn btn-danger">Eliminar</button></a>
+                <a href="/EditarProducto/<%= Repuesto.id %>"><button type="submit" class="btn-agregar btn btn-primary">Actualizar</button></a>
               </div>
             </div>
           </div>
