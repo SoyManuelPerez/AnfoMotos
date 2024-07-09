@@ -4,6 +4,7 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs')
 const { exec } = require('child_process');
+dotenv.config();
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, path.join(__dirname, '../public/img/Productos'));
@@ -39,6 +40,8 @@ module.exports.Crear = async (req, res) => {
 };
 
 // Función para ejecutar comandos de Git
+const { exec } = require('child_process');
+
 function updateGitRepo() {
   // Configurar la identidad del usuario
   exec('git config --global user.email "Soy_ManuelPerez@outlook.com" && git config --global user.name "SoyManuelPerez"', (err, stdout, stderr) => {
@@ -47,13 +50,16 @@ function updateGitRepo() {
       return;
     }
     console.log(`Configuración de usuario de Git: ${stdout}`);
+    
     // Configurar el repositorio remoto
-    exec('git remote add origin https://github.com/SoyManuelPerez/AnfoMotos', (err, stdout, stderr) => {
+    const gitRemoteCommand = `git remote add origin https://SoyManuelPerez:${process.env.Token}@github.com/SoyManuelPerez/AnfoMotos.git`;
+    exec(gitRemoteCommand, (err, stdout, stderr) => {
       if (err && !stderr.includes("remote origin already exists")) {
         console.error(`Error configurando el repositorio remoto: ${err.message}`);
         return;
       }
       console.log(`Configuración del repositorio remoto: ${stdout}`);
+      
       // Comandos de Git para agregar, hacer commit y empujar los cambios
       const gitCommands = `
         git add .
@@ -72,6 +78,7 @@ function updateGitRepo() {
     });
   });
 }
+
 //Eliminar Producto
 module.exports.eliminar = (req,res) =>{
   const id = req.params.id
