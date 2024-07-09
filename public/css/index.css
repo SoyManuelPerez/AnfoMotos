@@ -199,3 +199,19 @@ h1,h2,h3 {
   .content {
     flex: 1;
   }
+  .containermap{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+.map {
+    flex: 1;
+    height: 300px; /* Puedes ajustar la altura del mapa */
+}
+.reference {
+    flex: 1;
+}
+.reference p {
+    margin: 0;
+}
