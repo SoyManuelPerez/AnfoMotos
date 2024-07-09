@@ -3,6 +3,7 @@ const Carrito = require('../models/cart');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs')
+const dotenv = require('dotenv')
 const { exec } = require('child_process');
 dotenv.config();
 const storage = multer.diskStorage({
@@ -26,7 +27,7 @@ module.exports.Crear = async (req, res) => {
     const Tipo = req.body.Tipo;
     const Imagen = req.file ? req.file.filename : '';
     const newProducto = new Productos({ Producto, Precio, Tipo, Imagen });
-    
+
     try {
       await newProducto.save();
       // Llama a la función para actualizar Git
@@ -40,42 +41,90 @@ module.exports.Crear = async (req, res) => {
 };
 
 // Función para ejecutar comandos de Git
-const { exec } = require('child_process');
-
-function updateGitRepo() {
-  // Configurar la identidad del usuario
-  exec('git config --global user.email "Soy_ManuelPerez@outlook.com" && git config --global user.name "SoyManuelPerez"', (err, stdout, stderr) => {
+function runGitCommand(command, callback) {
+  exec(command, (err, stdout, stderr) => {
     if (err) {
-      console.error(`Error configurando el usuario de Git: ${err.message}`);
-      return;
+      console.error(`Error ejecutando comando: ${command}`);
+      console.error(`Error: ${err.message}`);
+      console.error(`stderr: ${stderr}`);
+      return callback(err);
     }
-    console.log(`Configuración de usuario de Git: ${stdout}`);
-    
-    // Configurar el repositorio remoto
-    const gitRemoteCommand = `git remote add origin https://SoyManuelPerez:${process.env.Token}@github.com/SoyManuelPerez/AnfoMotos.git`;
-    exec(gitRemoteCommand, (err, stdout, stderr) => {
-      if (err && !stderr.includes("remote origin already exists")) {
-        console.error(`Error configurando el repositorio remoto: ${err.message}`);
-        return;
-      }
-      console.log(`Configuración del repositorio remoto: ${stdout}`);
-      
-      // Comandos de Git para agregar, hacer commit y empujar los cambios
-      const gitCommands = `
-        git add .
-        git commit -m "Actualización automática: nuevo producto agregado"
-        git push origin main
-      `;
+    console.log(`stdout: ${stdout}`);
+    console.error(`stderr: ${stderr}`);
+    callback(null, stdout);
+  });
+}
 
-      exec(gitCommands, (err, stdout, stderr) => {
-        if (err) {
-          console.error(`Error al ejecutar comandos de Git: ${err.message}`);
-          return;
-        }
-        console.log(`Git output: ${stdout}`);
-        console.error(`Git error: ${stderr}`);
-      });
+// Función para configurar el usuario de Git
+function configureGitUser(callback) {
+  const command = 'git config --global user.email "Soy_ManuelPerez@outlook.com" && git config --global user.name "SoyManuelPerez"';
+  runGitCommand(command, callback);
+}
+
+// Función para verificar si el repositorio remoto ya existe
+function checkRemoteExists(callback) {
+  const command = 'git remote get-url origin';
+  runGitCommand(command, (err, stdout, stderr) => {
+    if (err) {
+      // Si hay un error, asumimos que el repositorio remoto no existe
+      console.log("El repositorio remoto no está configurado.");
+      return callback(null, false);
+    }
+    console.log("El repositorio remoto ya está configurado.");
+    callback(null, true);
+  });
+}
+
+// Función para agregar, hacer commit y empujar los cambios
+function pushChanges(callback) {
+  const gitCommands = `
+    git add .
+    git commit -m "Actualización automática: nuevo producto agregado"
+    git push origin main
+  `;
+
+  runGitCommand(gitCommands, callback);
+}
+
+// Función para actualizar el repositorio de Git
+function updateGitRepo() {
+  configureGitUser((err) => {
+    if (err) return;
+
+    checkRemoteExists((err, exists) => {
+      if (err) return;
+
+      if (!exists) {
+        configureGitRemote((err) => {
+          if (err) return;
+          pushChanges((err) => {
+            if (err) return;
+            console.log('Cambios empujados al repositorio remoto con éxito.');
+          });
+        });
+      } else {
+        pushChanges((err) => {
+          if (err) return;
+          console.log('Cambios empujados al repositorio remoto con éxito.');
+        });
+      }
     });
+  });
+}
+
+// Función para configurar el repositorio remoto
+function configureGitRemote(callback) {
+  const GITHUB_USERNAME = 'SoyManuelPerez';
+  const GITHUB_TOKEN = process.env.Token; // Asegúrate de que esta variable de entorno esté configurada
+  const GITHUB_REPOSITORY = 'AnfoMotos';
+
+  const gitRemoteCommand = `git remote add origin https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/${GITHUB_USERNAME}/${GITHUB_REPOSITORY}.git`;
+  runGitCommand(gitRemoteCommand, (err) => {
+    if (err && err.message.includes("remote origin already exists")) {
+      console.log("El repositorio remoto ya existe, continuando...");
+      return callback(null);
+    }
+    callback(err);
   });
 }
 
