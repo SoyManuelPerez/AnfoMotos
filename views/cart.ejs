@@ -28,25 +28,26 @@
                 <div class="card mb-3">
                     <div class="card-body">
                         <div class="row align-items-center">
-                            <div class="col-2">
-                                <img src="img/Productos/<%= Cart.Imagen %>" class="card-img-top" alt="Imagen del producto">
+                            <div class="col-12 col-md-6">
+                                <img src="img/Productos/<%= Cart.Imagen %>" class="img-fluid" alt="Imagen del producto" width="180px">
                             </div>
-                            <div class="col-4 product-details">
-                                <h5><%= Cart.Producto %></h5>
-                            </div>
-                            <div class="col-2 text-center quantity-control">
-                                <strong><p>Valor unitario</p></strong>
-                                <p>$ <%= Cart.Precio.toLocaleString('es-CO') %> COP c/u</p>
-                            </div>
-                            <div class="col-2 text-center quantity-control">
-                                
-                                <strong><p>Cantidad</p></strong><p><%= Cart.Cantidad %></p>
-                            </div>
-                            <div class="col-2 text-end">
-                                <% let valortotal = (Cart.Cantidad * Cart.Precio) %>
-                                <strong><p>Valor total</p></strong>
-                                <p>$<%= valortotal.toLocaleString('es-CO') %> COP</p>
-                                <a href="/eliminarcart/<%= Cart.id %>" class="text-danger">Remover</a>
+                            <div class="col-12 col-md-6">
+                                <div class="product-details">
+                                    <h5><%= Cart.Producto %></h5>
+                                </div>
+                                <div class="quantity-control">
+                                    <strong><p>Valor unitario</p></strong>
+                                    <p>$ <%= Cart.Precio.toLocaleString('es-CO') %> COP c/u</p>
+                                </div>
+                                <div class="quantity-control">
+                                    <strong><p>Cantidad</p></strong><p><%= Cart.Cantidad %></p>
+                                </div>
+                                <div class="quantity-control">
+                                    <% let valortotal = (Cart.Cantidad * Cart.Precio) %>
+                                    <strong><p>Valor total</p></strong>
+                                    <p>$<%= valortotal.toLocaleString('es-CO') %> COP</p>
+                                    <a href="/eliminarcart/<%= Cart.id %>" class="text-danger">Remover</a>
+                                </div>
                             </div>
                         </div>
                     </div>
