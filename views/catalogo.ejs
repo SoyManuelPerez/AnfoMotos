@@ -22,7 +22,7 @@
         <% let cantida = 0 %>
         <% Cart.forEach( (Cart) => { %>
           <% cantida += 1 %>
-          <% }) %>
+        <% }) %>
         <div class="notification" id="cart-count"><%= cantida %></div>
       </a>
     </div>
@@ -43,7 +43,13 @@
               <div class="card-body">
                 <h5 class="card-title"><%= Llanta.Producto %></h5>
                 <p class="Precio">$<%= Llanta.Precio.toLocaleString('es-CO') %> COP</p>
-                <a href="/Agregarcart/<%= Llanta.id %>" class="btn-agregar">Agregar al carrito</a>
+                <form action="/Agregarcart/<%= Llanta.id %>" method="POST">
+                  <div class="cantidad-container">
+                    <label for="cantidad-<%= Llanta.id %>" class="cantidad-label">Cantidad</label>
+                    <input type="number" name="cantidad" id="cantidad-<%= Llanta.id %>" class="form-control cantidad-input" min="1" value="1">
+                  </div>
+                  <button type="submit" class="btn-agregar btn btn-primary">Agregar al carrito</button>
+                </form>
               </div>
             </div>
           </div>
@@ -54,8 +60,14 @@
               <img src="img/Productos/<%= Aceite.Imagen %>" class="card-img-top" alt="Imagen del producto">
               <div class="card-body">
                 <h5 class="card-title"><%= Aceite.Producto %></h5>
-                <p  class="Precio">$<%= Aceite.Precio.toLocaleString('es-CO') %> COP</p>
-                <a href="/Agregarcart/<%= Aceite.id %>" class="btn-agregar">Agregar al carrito</a>
+                <p class="Precio">$<%= Aceite.Precio.toLocaleString('es-CO') %> COP</p>
+                <form action="/Agregarcart/<%= Aceite.id %>" method="POST">
+                  <div class="cantidad-container">
+                    <label for="cantidad-<%= Aceite.id %>" class="form-label">Cantidad</label>
+                    <input type="number" name="cantidad" id="cantidad-<%= Aceite.id %>" class="form-control" placeholder="Cantidad" min="1" value="1">
+                  </div>
+                  <button type="submit" class="btn-agregar btn btn-primary">Agregar al carrito</button>
+                </form>
               </div>
             </div>
           </div>
@@ -66,8 +78,14 @@
               <img src="img/Productos/<%= Herramienta.Imagen %>" class="card-img-top" alt="Imagen del producto">
               <div class="card-body">
                 <h5 class="card-title"><%= Herramienta.Producto %></h5>
-                <p  class="Precio">$ <%= Herramienta.Precio.toLocaleString('es-CO') %> COP</p>
-                <a href="/Agregarcart/<%= Herramienta.id %>" class="btn-agregar">Agregar al carrito</a>
+                <p class="Precio">$ <%= Herramienta.Precio.toLocaleString('es-CO') %> COP</p>
+                <form action="/Agregarcart/<%= Herramienta.id %>" method="POST">
+                  <div class="cantidad-container">
+                    <label for="cantidad-<%= Herramienta.id %>" class="form-label">Cantidad</label>
+                    <input type="number" name="cantidad" id="cantidad-<%= Herramienta.id %>" class="form-control" placeholder="Cantidad" min="1" value="1">
+                  </div>
+                  <button type="submit" class="btn-agregar btn btn-primary">Agregar al carrito</button>
+                </form>
               </div>
             </div>
           </div>
@@ -78,8 +96,14 @@
               <img src="img/Productos/<%= Repuesto.Imagen %>" class="card-img-top" alt="Imagen del producto">
               <div class="card-body">
                 <h5 class="card-title"><%= Repuesto.Producto %></h5>
-                <p  class="Precio">$<%= Repuesto.Precio.toLocaleString('es-CO') %> COP</p>
-                <a href="/Agregarcart/<%= Repuesto.id %>" class="btn-agregar">Agregar al carrito</a>
+                <p class="Precio">$<%= Repuesto.Precio.toLocaleString('es-CO') %> COP</p>
+                <form action="/Agregarcart/<%= Repuesto.id %>" method="POST">
+                  <div class="cantidad-container">
+                    <label for="cantidad-<%= Repuesto.id %>" class="form-label">Cantidad</label>
+                    <input type="number" name="cantidad" id="cantidad-<%= Repuesto.id %>" class="form-control" placeholder="Cantidad" min="1" value="1">
+                  </div>
+                  <button type="submit" class="btn-agregar btn btn-primary">Agregar al carrito</button>
+                </form>
               </div>
             </div>
           </div>
@@ -98,8 +122,8 @@
   </a>
   <br>
   <footer>
- <p>Anfomotos © 2024</p>
-</footer>
+    <p>Anfomotos © 2024</p>
+  </footer>
 </body>
 <script src="js/buscador.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

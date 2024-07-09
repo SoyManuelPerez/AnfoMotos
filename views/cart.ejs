@@ -17,42 +17,53 @@
     <div class="espacio">
         <div class="container mt-5">
             <h1 class="text-center">¿Listo para cotizar?</h1>
-            <% let valor = 0 %>
-            <% Cart.forEach( (Cart) => { %>
-            <div class="card mb-3">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col-2">
-                            <img src="img/Productos/<%= Cart.Imagen %>" class="card-img-top" alt="Imagen del producto">
-                        </div>
-                        <div class="col-4 product-details">
-                            <h5><%= Cart.Producto %></h5>
-                        </div>
-                        <div class="col-2 text-center">
-                            <p>$ <%= Cart.Precio.toLocaleString('es-CO') %> COP cada</p>
-                        </div>
-                        <div class="col-2 text-center quantity-control">
-                            <input type="number" value="1" class="form-control">
-                        </div>
-                        <div class="col-2 text-end">
-                            <p>$<%= Cart.Precio.toLocaleString('es-CO') %> COP</p>
-                            <a href="/eliminarcart/<%= Cart.id %>" class="text-danger">Remover</a>
+            <% if (Cart.length === 0) { %>
+                <div class="text-center">
+                    <h2>No has agregado productos</h2>
+                    <a href="/catalogo" class="btn btn-primary">Ver Catálogo</a>
+                </div>
+            <% } else { %>
+                <% let valor = 0 %>
+                <% Cart.forEach( (Cart) => { %>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-2">
+                                <img src="img/Productos/<%= Cart.Imagen %>" class="card-img-top" alt="Imagen del producto">
+                            </div>
+                            <div class="col-4 product-details">
+                                <h5><%= Cart.Producto %></h5>
+                            </div>
+                            <div class="col-2 text-center quantity-control">
+                                <strong><p>Valor unitario</p></strong>
+                                <p>$ <%= Cart.Precio.toLocaleString('es-CO') %> COP c/u</p>
+                            </div>
+                            <div class="col-2 text-center quantity-control">
+                                
+                                <strong><p>Cantidad</p></strong><p><%= Cart.Cantidad %></p>
+                            </div>
+                            <div class="col-2 text-end">
+                                <% let valortotal = (Cart.Cantidad * Cart.Precio) %>
+                                <strong><p>Valor total</p></strong>
+                                <p>$<%= valortotal.toLocaleString('es-CO') %> COP</p>
+                                <a href="/eliminarcart/<%= Cart.id %>" class="text-danger">Remover</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <% valor += Cart.Precio  %>
-            <% }) %>
-            <div class="text-end total-price mt-4">total: $<%= valor.toLocaleString('es-CO') %> COP</div>
-            <div class="text-center mt-4">
-                <button class="btn btn-primary">Cotizar</button>
-            </div>
+                <% valor += valortotal  %>
+                <% }) %>
+                <div class="text-end total-price mt-4">Total: $<%= valor.toLocaleString('es-CO') %> COP</div>
+                <div class="text-center mt-4">
+                    <button class="btn btn-primary">Cotizar</button>
+                </div>
+            <% } %>
         </div>
     </div>
     <br>
-   <footer>
-  <p>Anfomotos © 2024</p>
-</footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <footer>
+        <p>Anfomotos © 2024</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

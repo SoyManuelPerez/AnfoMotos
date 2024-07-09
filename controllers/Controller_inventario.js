@@ -96,10 +96,15 @@ module.exports.mostrar = (req, res) => {
   });
 };
 module.exports.mostrarllantas = (req, res) => {
-  Productos.find({Tipo: 'Llantas'}).then(result => result || [])
-  .then((result) => {
+  const Cart = req.cookies.Anfomotos;
+  Promise.all([
+    Productos.find({Tipo: 'Llantas'}).then(result => result || []),
+    Carrito.find({Cart: Cart}).then(result => result || [])
+  ])
+  .then(([Llantas,Cart]) => {
     res.render('llantas', {
-      Llantas: result
+      Llantas: Llantas,
+      Cart:Cart
     });
   })
   .catch(err => {
@@ -108,10 +113,15 @@ module.exports.mostrarllantas = (req, res) => {
   });
 };
 module.exports.mostrarAceite = (req, res) => {
-  Productos.find({Tipo: 'Aceites'}).then(result => result || [])
-.then((result) => {
+  const Cart = req.cookies.Anfomotos;
+  Promise.all([
+    Productos.find({Tipo: 'Aceites'}).then(result => result || []),
+    Carrito.find({Cart: Cart}).then(result => result || [])
+  ])
+.then(([Aceites,Cart]) => {
   res.render('aceites', {
-    Aceites: result
+    Aceites: Aceites,
+    Cart:Cart
   });
 })
 .catch(err => {
@@ -120,28 +130,38 @@ module.exports.mostrarAceite = (req, res) => {
 });
 };
 module.exports.mostrarRepuestos = (req, res) => {
-  Productos.find({Tipo: 'Repuestos'}).then(result => result || [])
-.then((result) => {
-  res.render('repuestos', {
-    Repuestos: result
+  const Cart = req.cookies.Anfomotos;
+  Promise.all([
+    Productos.find({Tipo: 'Repuestos'}).then(result => result || []),
+    Carrito.find({Cart: Cart}).then(result => result || [])
+  ])
+  .then(([Repuestos,Cart]) => {
+    res.render('repuestos', {
+      Repuestos: Repuestos,
+      Cart:Cart
+    });
+  })
+  .catch(err => {
+    console.error('Error mostrando datos', err);
+    res.status(500).send('Error mostrando datos');
   });
-})
-.catch(err => {
-  console.error('Error mostrando datos', err);
-  res.status(500).send('Error mostrando datos');
-});
 };
 module.exports.mostrarHeramientas = (req, res) => {
-  Productos.find({Tipo: 'Herramientas'}).then(result => result || [])
-.then((result) => {
-  res.render('herramientas', {
-    Herramientas: result
+  const Cart = req.cookies.Anfomotos;
+  Promise.all([
+    Productos.find({Tipo: 'Herramientas'}).then(result => result || []),
+    Carrito.find({Cart: Cart}).then(result => result || [])
+  ])
+  .then(([Herramientas, Cart]) => {
+    res.render('herramientas', {
+      Herramientas: Herramientas,
+      Cart:Cart
+    });
+  })
+  .catch(err => {
+    console.error('Error mostrando datos', err);
+    res.status(500).send('Error mostrando datos');
   });
-})
-.catch(err => {
-  console.error('Error mostrando datos', err);
-  res.status(500).send('Error mostrando datos');
-});
 };
 //Mostrar en inventario
 module.exports.mostrarInventario = (req, res) => {

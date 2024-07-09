@@ -39,7 +39,7 @@ router.get('/EliminarInvetario/:id',inventario.eliminar,(req,res)=>{
 router.get('/eliminarcart/:id',Cart.Eliminarcart,(req,res)=>{
     res.render('cart')
 })
-router.get('/Agregarcart/:id',Cart.Crear,(req,res)=>{
+router.post('/Agregarcart/:id',Cart.Crear,(req,res)=>{
     res.render('cart')
 })
 router.post('/CrearProducto',inventario.Crear,(req,res)=>{

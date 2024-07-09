@@ -174,3 +174,18 @@ body {
   width: 100%;
   height: 200px;
 }
+
+.cantidad-input {
+  width: 60px; /* Ajusta el tamaño del input */
+  text-align: center; /* Centra el texto dentro del input */
+  display: inline-block; /* Asegura que el input se comporte como un inline-block para el centrado */
+}
+.cantidad-label {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+}
+.cantidad-container {
+  text-align: center;
+  margin-bottom: 1rem; /* Añade espacio debajo del contenedor */
+}
