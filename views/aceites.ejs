@@ -13,7 +13,8 @@
     <header>
         <%- include('nav'); %>
     </header>
-<div class="container espacio">
+<div class="container flex-wrapper">
+  <div class="content"> 
   <div class="cart">
     <a class="nav-link active" aria-current="page" href="/cart">
       <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
@@ -34,7 +35,7 @@
       <input type="text" id="searchInput" class="form-control" placeholder="Buscar productos...">
     </div>
   </div>
-  <div class="container ">
+  <div class="container">
     <div class="row" id="productContainer">
       <% Aceites.forEach( (Aceite) => { %>
         <div class="col-lg-3 col-md-4 col-sm-6 col-6 product-card">
@@ -45,8 +46,8 @@
               <p class="Precio">$<%= Aceite.Precio.toLocaleString('es-CO') %> COP</p>
               <form action="/Agregarcart/<%= Aceite.id %>" method="POST">
                 <div class="cantidad-container">
-                  <label for="cantidad-<%= Aceite.id %>" class="form-label">Cantidad</label>
-                  <input type="number" name="cantidad" id="cantidad-<%= Aceite.id %>" class="form-control" placeholder="Cantidad" min="1" value="1">
+                  <label for="cantidad-<%= Aceite.id %>" class="cantidad-label">Cantidad</label>
+                  <input type="number" name="cantidad" id="cantidad-<%= Aceite.id %>" class="form-control cantidad-input" placeholder="Cantidad" min="1" value="1">
                 </div>
                 <button type="submit" class="btn-agregar btn btn-primary">Agregar al carrito</button>
               </form>
@@ -54,13 +55,13 @@
           </div>
         </div>
       <% }) %>
-  </div>
+    </div>
     <div id="noProductMessage" class="text-center mt-4" style="display: none;">
       <h1>Producto no encontrado.</h1>
     </div>
+  </div>
 </div>
 </div>
-
 <br>
 <footer>
 <p>Anfomotos © 2024</p>

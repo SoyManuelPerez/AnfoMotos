@@ -186,4 +186,16 @@ h1,h2,h3 {
     margin: 0;
   }
 
-  
+  footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #f8f9fa;
+  }
+  .flex-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 82vh;
+  }
+  .content {
+    flex: 1;
+  }

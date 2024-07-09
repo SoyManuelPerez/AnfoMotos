@@ -33,7 +33,7 @@ router.get('/nosotros',(req,res)=>{
 router.get('/inventario',inventario.mostrarInventario,(req,res)=>{
     res.render('inventario')
 })
-router.get('/EliminarInvetario/:id',inventario.eliminar,(req,res)=>{
+router.get('/EliminarProducto/:id',inventario.eliminar,(req,res)=>{
     res.render('inventario')
 })
 router.get('/eliminarcart/:id',Cart.Eliminarcart,(req,res)=>{

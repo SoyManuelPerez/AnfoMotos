@@ -32,56 +32,72 @@
       </div>
     </div>
     <div class="container">
-      <h2>Inventario</h2>
-      <% Llantas.forEach( (Llantas) => { %>
-     <div class="card" style="width: 14rem;">
-        <img src="img/Productos/<%= Llantas.Imagen %>"  class="card-img-top" alt="Imagen del producto">
-        <div class="card-body">
-          <h5 class="card-title"><%= Llantas.Producto %></h5>
-          <p><strong>Precio:</strong> <%= Llantas.Precio %></p>
-          <p class="card-text"><%= Llantas.Descripcion %> </p>
-          <a href="/Eliminar/<%= Llantas.id %>" class="btn btn-outline-danger">Eliminar</a>
+      <div class="row my-4">
+        <div class="col">
+          <input type="text" id="searchInput" class="form-control" placeholder="Buscar productos...">
         </div>
       </div>
-   <% }) %>
-   <% Aceites.forEach( (Aceites) => { %>
-    <div class="card" style="width: 14rem;">
-       <img src="img/Productos/<%= Aceites.Imagen %>"  class="card-img-top" alt="Imagen del producto">
-       <div class="card-body">
-         <h5 class="card-title"><%= Aceites.Producto %></h5>
-         <p><strong>Precio:</strong> <%= Aceites.Precio %></p>
-         <p class="card-text"><%= Aceites.Descripcion %> </p>
-         <a href="/Eliminar/<%= Llantas.id %>" class="btn btn-outline-danger">Eliminar</a>
-       </div>
-     </div>
-  <% }) %>
-  <% Herramientas.forEach( (Herramientas) => { %>
-    <div class="card" style="width: 14rem;">
-       <img src="img/Productos/<%= Herramientas.Imagen %>"  class="card-img-top" alt="Imagen del producto">
-       <div class="card-body">
-         <h5 class="card-title"><%= Herramientas.Producto %></h5>
-         <p><strong>Precio:</strong> <%= Herramientas.Precio %></p>
-         <p class="card-text"><%= Herramientas.Descripcion %> </p>
-         <a href="/Eliminar/<%= Llantas.id %>" class="btn btn-outline-danger">Eliminar</a>
-       </div>
-     </div>
-  <% }) %>
-  <% Repuestos.forEach( (Repuestos) => { %>
-    <div class="card" style="width: 14rem;">
-       <img src="img/Productos/<%= Repuestos.Imagen %>"  class="card-img-top" alt="Imagen del producto">
-       <div class="card-body">
-         <h5 class="card-title"><%= Repuestos.Producto %></h5>
-         <p><strong>Precio:</strong> <%= Repuestos.Precio %></p>
-         <p class="card-text"><%= Repuestos.Descripcion %> </p>
-         <a href="/Eliminar/<%= Llantas.id %>" class="btn btn-outline-danger">Eliminar</a>
-       </div>
-     </div>
-  <% }) %>
+    </div>
+    <div class="container">
+      <div class="row" id="productContainer">
+        <% Llantas.forEach( (Llanta) => { %>
+          <div class="col-lg-3 col-md-4 col-sm-6 col-6 product-card">
+            <div class="card mb-3" style="width: 100%;">
+              <img src="img/Productos/<%= Llanta.Imagen %>" class="card-img-top" alt="Imagen del producto">
+              <div class="card-body">
+                <h5 class="card-title"><%= Llanta.Producto %></h5>
+                <p class="Precio">$<%= Llanta.Precio.toLocaleString('es-CO') %> COP</p>
+                 <a href="/EliminarProducto/<%= Llanta.id %>"><button type="submit" class="btn-agregar btn btn-danger">Eliminar</button></a> 
+              </div>
+            </div>
+          </div>
+        <% }) %>
+        <% Aceites.forEach( (Aceite) => { %>
+          <div class="col-lg-3 col-md-4 col-sm-6 col-6 product-card">
+            <div class="card mb-3" style="width: 100%;">
+              <img src="img/Productos/<%= Aceite.Imagen %>" class="card-img-top" alt="Imagen del producto">
+              <div class="card-body">
+                <h5 class="card-title"><%= Aceite.Producto %></h5>
+                <p class="Precio">$<%= Aceite.Precio.toLocaleString('es-CO') %> COP</p>
+                <a href="/EliminarProducto/<%= Aceite.id %>"><button type="submit" class="btn-agregar btn btn-danger">Eliminar</button></a>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+        <% Herramientas.forEach( (Herramienta) => { %>
+          <div class="col-lg-3 col-md-4 col-sm-6 col-6 product-card">
+            <div class="card mb-3" style="width: 100%;">
+              <img src="img/Productos/<%= Herramienta.Imagen %>" class="card-img-top" alt="Imagen del producto">
+              <div class="card-body">
+                <h5 class="card-title"><%= Herramienta.Producto %></h5>
+                <p class="Precio">$ <%= Herramienta.Precio.toLocaleString('es-CO') %> COP</p>
+                <a href="/EliminarProducto/<%= Herramienta.id %>"><button type="submit" class="btn-agregar btn btn-danger">Eliminar</button></a>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+        <% Repuestos.forEach( (Repuesto) => { %>
+          <div class="col-lg-3 col-md-4 col-sm-6 col-6 product-card">
+            <div class="card mb-3" style="width: 100%;">
+              <img src="img/Productos/<%= Repuesto.Imagen %>" class="card-img-top" alt="Imagen del producto">
+              <div class="card-body">
+                <h5 class="card-title"><%= Repuesto.Producto %></h5>
+                <p class="Precio">$<%= Repuesto.Precio.toLocaleString('es-CO') %> COP</p>
+                <a href="/EliminarProducto/<%= Repuesto.id %>"><button type="submit" class="btn-agregar btn btn-danger">Eliminar</button></a>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+      <div id="noProductMessage" class="text-center mt-4" style="display: none;">
+        <h1>Producto no encontrado.</h1>
+      </div>
     </div>
     <br>
     <footer>
    <p>Anfomotos © 2024</p>
  </footer>
 </body>
+<script src="js/buscador.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </html>
