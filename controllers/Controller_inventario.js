@@ -30,9 +30,8 @@ module.exports.Crear = async (req, res) => {
 
     try {
       await newProducto.save();
-      // Llama a la función para actualizar Git
-      updateGitRepo();
-      res.redirect('/inventario');
+      // Llama a la función para actualizar Git y pasa el response para manejar la respuesta
+      updateGitRepo(res);
     } catch (error) {
       res.status(500).send("Error al guardar el producto.");
       console.log(error);
@@ -87,30 +86,48 @@ function pushChanges(callback) {
 }
 
 // Función para actualizar el repositorio de Git
-function updateGitRepo() {
+function updateGitRepo(res) {
   configureGitUser((err) => {
-    if (err) return;
+    if (err) {
+      res.status(500).send("Error configurando usuario de Git.");
+      return;
+    }
 
     checkRemoteExists((err, exists) => {
-      if (err) return;
+      if (err) {
+        res.status(500).send("Error verificando repositorio remoto.");
+        return;
+      }
 
       if (!exists) {
         configureGitRemote((err) => {
-          if (err) return;
+          if (err) {
+            res.status(500).send("Error configurando repositorio remoto.");
+            return;
+          }
           pushChanges((err) => {
-            if (err) return;
+            if (err) {
+              res.status(500).send("Error empujando cambios al repositorio remoto.");
+              return;
+            }
             console.log('Cambios empujados al repositorio remoto con éxito.');
+            res.redirect('/inventario');
           });
         });
       } else {
         pushChanges((err) => {
-          if (err) return;
+          if (err) {
+            res.status(500).send("Error empujando cambios al repositorio remoto.");
+            return;
+          }
           console.log('Cambios empujados al repositorio remoto con éxito.');
+          res.redirect('/inventario');
         });
       }
     });
   });
 }
+
 // Función para configurar el repositorio remoto
 function configureGitRemote(callback) {
   const GITHUB_USERNAME = 'SoyManuelPerez';
