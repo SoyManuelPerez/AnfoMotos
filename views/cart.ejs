@@ -11,63 +11,70 @@
   <link rel="stylesheet" href="css/inventario.css">
 </head>
 <body>
-    <div class="flex-wrapper espacio">
-        <header>
-            <%- include('nav'); %>
-        </header>
-        <div class="content">
-            <div class="container mt-5">
-                <% if (Cart.length === 0) { %>
-                    <div class="text-center">
-                        <h1>No has agregado ningun producto</h1><br>                        <a href="/catalogo" class="btn btn-primary">Ver Catálogo</a>
+  <div class="flex-wrapper espacio">
+    <header>
+      <%- include('nav'); %>
+    </header>
+    <div class="content">
+      <div class="container mt-5">
+        <% if (Cart.length === 0) { %>
+          <div class="text-center">
+            <h1>No has agregado ningún producto</h1><br>
+            <a href="/catalogo" class="btn btn-primary">Ver Catálogo</a>
+          </div>
+        <% } else { %>
+          <h1 class="text-center">¿Listo para cotizar?</h1>
+          <% let valor = 0 %>
+          <% Cart.forEach(cartItem => { %>
+          <div class="card mb-3">
+            <div class="card-body">
+              <div class="row align-items-center">
+                <div class="col-12 col-md-6 col-lg-2">
+                  <img src="img/Productos/<%= cartItem.Imagen %>" class="img-fluid" alt="Imagen del producto">
+                </div>
+                <div class="col-12 col-md-6 col-lg-10">
+                  <div class="row">
+                    <div class="col-12 col-md-6 col-lg-4 product-details me-auto">
+                      <h5><%= cartItem.Producto %></h5>
                     </div>
-                <% } else { %>
-                    <h1 class="text-center">¿Listo para cotizar?</h1>
-                    <% let valor = 0 %>
-                    <% Cart.forEach( (Cart) => { %>
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col-12 col-md-6 col-lg-2">
-                                    <img src="img/Productos/<%= Cart.Imagen %>" class="img-fluid" alt="Imagen del producto">
-                                </div>
-                                <div class="col-12 col-md-6 col-lg-10">
-                                    <div class="row">
-                                        <div class="col-12 col-md-6 col-lg-4 product-details me-auto">
-                                            <h5><%= Cart.Producto %></h5>
-                                        </div>
-                                        <div class="col-6 col-md-3 col-lg-2 text-center quantity-control me-auto">
-                                            <strong><p>Valor unitario</p></strong>
-                                            <p>$ <%= Cart.Precio.toLocaleString('es-CO') %> COP</p>
-                                        </div>
-                                        <div class="col-6 col-md-3 col-lg-2 text-center quantity-control me-auto">
-                                            <strong><p>Cantidad</p></strong>
-                                            <p><%= Cart.Cantidad %></p>
-                                        </div>
-                                        <div class="col-12 col-md-12 col-lg-4 text-end">
-                                            <% let valortotal = (Cart.Cantidad * Cart.Precio) %>
-                                            <strong><p>Valor total</p></strong>
-                                            <p>$<%= valortotal.toLocaleString('es-CO') %> COP</p>
-                                            <a href="/eliminarcart/<%= Cart.id %>" class="text-danger">Remover</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="col-6 col-md-3 col-lg-2 text-center quantity-control me-auto">
+                      <strong><p>Valor unitario</p></strong>
+                      <p>$ <%= cartItem.Precio.toLocaleString('es-CO') %> COP</p>
                     </div>
-                    <% valor += valortotal  %>
-                    <% }) %>
-                    <div class="text-end total-price mt-4">Total: $<%= valor.toLocaleString('es-CO') %> COP</div>
-                    <div class="text-center mt-4">
-                        <button class="btn btn-primary">Cotizar</button>
+                    <div class="col-6 col-md-3 col-lg-2 text-center quantity-control me-auto">
+                      <strong><p>Cantidad</p></strong>
+                      <p><%= cartItem.Cantidad %></p>
                     </div>
-                <% } %>
+                    <div class="col-12 col-md-12 col-lg-4 text-end">
+                      <% let valortotal = (cartItem.Cantidad * cartItem.Precio) %>
+                      <strong><p>Valor total</p></strong>
+                      <p>$<%= valortotal.toLocaleString('es-CO') %> COP</p>
+                      <a href="/eliminarcart/<%= cartItem.id %>" class="text-danger">Remover</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-        </div>
-        <footer>
-            <p>Anfomotos © 2024</p>
-        </footer>
+          </div>
+          <% valor += valortotal %>
+          <% }) %>
+          <% let message = "Hola, me gustaría cotizar los siguientes productos: \n"; %>
+          <% Cart.forEach(cartItem => { %>
+            <% message += `${cartItem.Producto} - Cantidad: ${cartItem.Cantidad} Precio unitario: $${cartItem.Precio.toLocaleString('es-CO')} COP\n`; %>
+          <% }) %>
+          <% message += `Total: $${valor.toLocaleString('es-CO')} COP`; %>
+          <% let url = `https://wa.me/573053672047?text=${encodeURIComponent(message)}`; %>
+          <div class="text-end total-price mt-4">Total: $<%= valor.toLocaleString('es-CO') %> COP</div>
+          <div class="text-center mt-4">
+            <a href="<%= url %>" class="btn btn-primary" id="cotizarBtn">Cotizar</a>
+          </div>
+        <% } %>
+      </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <footer class="text-center mt-4">
+      <p>Anfomotos © 2024</p>
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
