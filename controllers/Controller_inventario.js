@@ -111,7 +111,6 @@ function updateGitRepo() {
     });
   });
 }
-
 // Función para configurar el repositorio remoto
 function configureGitRemote(callback) {
   const GITHUB_USERNAME = 'SoyManuelPerez';
@@ -143,6 +142,7 @@ module.exports.eliminar = (req,res) =>{
   });
   Productos.findByIdAndDelete({_id:id}).exec()
   console.log("Objeto eliminado : ", resultado); 
+  updateGitRepo();
 })
 .catch(error => {
   console.log(error) 
