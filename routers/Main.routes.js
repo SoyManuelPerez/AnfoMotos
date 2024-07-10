@@ -42,8 +42,8 @@ router.get('/eliminarcart/:id',Cart.Eliminarcart,(req,res)=>{
 router.post('/Agregarcart/:id',Cart.Crear,(req,res)=>{
     res.render('cart')
 })
-router.post('/CrearProducto',inventario.Crear,(req,res)=>{
-    res.render('inventario')})
+router.post('/EditarProducto',inventario.editar)
+router.post('/CrearProducto',inventario.Crear)
 router.post('/login',login.Login)
 
 module.exports= router

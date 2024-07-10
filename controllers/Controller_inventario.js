@@ -151,13 +151,10 @@ module.exports.eliminar = (req,res) =>{
 }
 //Editar Producto
 module.exports.editar = (req,res) =>{
-    const producto = req.body.ProductoE
-    const Tipo = req.body.TipoE
-    const Cantidad = req.body.CantidadE
-    const Precio = req.body.PrecioE
-    const Descripcion = req.body.DescripcionE
-    console.log(Cantidad)
-    Productos.findOneAndUpdate({Producto:producto.trim()},{Precio,Cantidad,Tipo,Descripcion}).exec()
+  console.log(req.body)
+    const Producto = req.body.Producto
+    const Precio = req.body.Precio
+    Productos.findOneAndUpdate({Producto:Producto.trim()},{Precio,Producto}).exec()
     .then(resultado=>{
         console.log("Objeto Actualizado : ", resultado); 
     })
