@@ -79,7 +79,7 @@ function checkRemoteExists(callback) {
 function pushChanges(callback) {
   const gitCommands = `
     git add .
-    git commit -m "Actualización automática: nuevo producto agregado"
+    git commit -m "Actualización automática Exitosa"
     git push origin main
   `;
 
