@@ -77,6 +77,8 @@ function checkRemoteExists(callback) {
 // Función para agregar, hacer commit y empujar los cambios
 function pushChanges(callback) {
   const gitCommands = `
+    git checkout main
+    git pull origin main
     git add .
     git commit -m "Actualización automática Exitosa"
     git push origin main
