@@ -66,6 +66,16 @@ h1,h2,h3 {
     justify-content: center;
 
 }
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+.text-container {
+  padding: 20px;
+}
+ul {
+  list-style-position: inside;
+}
 .contenido-hero h2, 
 .contenido-hero p {
     color: var(--blanco);

@@ -190,15 +190,17 @@ module.exports.mostrar = (req, res) => {
     Productos.find({Tipo: 'Aceites'}).then(result => result || []),
     Productos.find({Tipo: 'Herramientas'}).then(result => result || []),
     Productos.find({Tipo: 'Repuestos'}).then(result => result || []),
-    Productos.find({Tipo: 'Varios'}).then(result => result || [])
+    Productos.find({Tipo: 'Varios'}).then(result => result || []),
+    Carrito.find({Cart: Cart}).then(result => result || [])
   ])
-  .then(([Llantas,Aceites, Herramientas,  Repuestos,Varios]) => {
-    res.render('inventario', {
+  .then(([Llantas,Aceites, Herramientas, Repuestos,Varios ,Cart]) => {
+    res.render('catalogo', {
       Llantas: Llantas,
       Aceites: Aceites,
       Herramientas: Herramientas,
       Repuestos: Repuestos,
-      Varios:Varios
+      Varios:Varios,
+      Cart:Cart
     });
   })
   .catch(err => {
