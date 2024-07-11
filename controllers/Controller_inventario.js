@@ -171,9 +171,10 @@ module.exports.eliminar = (req,res) =>{
 //Editar Producto
 module.exports.editar = (req,res) =>{
   console.log(req.body)
+    const id = req.body.id
     const Producto = req.body.Producto
     const Precio = req.body.Precio
-    Productos.findOneAndUpdate({Producto:Producto.trim()},{Precio,Producto}).exec()
+    Productos.findOneAndUpdate({_id:id},{Precio,Producto}).exec()
     .then(resultado=>{
         console.log("Objeto Actualizado : ", resultado); 
     })
