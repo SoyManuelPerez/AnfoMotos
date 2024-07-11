@@ -24,6 +24,9 @@ router.get('/repuestos',inventario.mostrarRepuestos,(req,res)=>{
 router.get('/herramientas',inventario.mostrarHeramientas,(req,res)=>{
     res.render('herramientas')
 })
+router.get('/Varios',inventario.mostrarVarios,(req,res)=>{
+    res.render('varios')
+})
 router.get('/login',(req,res)=>{
     res.render('login')
 })

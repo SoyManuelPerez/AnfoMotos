@@ -190,15 +190,15 @@ module.exports.mostrar = (req, res) => {
     Productos.find({Tipo: 'Aceites'}).then(result => result || []),
     Productos.find({Tipo: 'Herramientas'}).then(result => result || []),
     Productos.find({Tipo: 'Repuestos'}).then(result => result || []),
-    Carrito.find({Cart: Cart}).then(result => result || [])
+    Productos.find({Tipo: 'Varios'}).then(result => result || [])
   ])
-  .then(([Llantas,Aceites, Herramientas,  Repuestos,Cart]) => {
-    res.render('catalogo', {
+  .then(([Llantas,Aceites, Herramientas,  Repuestos,Varios]) => {
+    res.render('inventario', {
       Llantas: Llantas,
       Aceites: Aceites,
       Herramientas: Herramientas,
       Repuestos: Repuestos,
-      Cart:Cart
+      Varios:Varios
     });
   })
   .catch(err => {
@@ -274,20 +274,39 @@ module.exports.mostrarHeramientas = (req, res) => {
     res.status(500).send('Error mostrando datos');
   });
 };
+module.exports.mostrarVarios = (req, res) => {
+  const Cart = req.cookies.Anfomotos;
+  Promise.all([
+    Productos.find({Tipo: 'Varios'}).then(result => result || []),
+    Carrito.find({Cart: Cart}).then(result => result || [])
+  ])
+  .then(([Varios, Cart]) => {
+    res.render('varios', {
+      Varios: Varios,
+      Cart:Cart
+    });
+  })
+  .catch(err => {
+    console.error('Error mostrando datos', err);
+    res.status(500).send('Error mostrando datos');
+  });
+};
 //Mostrar en inventario
 module.exports.mostrarInventario = (req, res) => {
   Promise.all([
     Productos.find({Tipo: 'Llantas'}).then(result => result || []),
     Productos.find({Tipo: 'Aceites'}).then(result => result || []),
     Productos.find({Tipo: 'Herramientas'}).then(result => result || []),
-    Productos.find({Tipo: 'Repuestos'}).then(result => result || [])
+    Productos.find({Tipo: 'Repuestos'}).then(result => result || []),
+    Productos.find({Tipo: 'Varios'}).then(result => result || [])
   ])
-  .then(([Llantas,Aceites, Herramientas,  Repuestos]) => {
+  .then(([Llantas,Aceites, Herramientas,  Repuestos,Varios]) => {
     res.render('inventario', {
       Llantas: Llantas,
       Aceites: Aceites,
       Herramientas: Herramientas,
-      Repuestos: Repuestos
+      Repuestos: Repuestos,
+      Varios:Varios
     });
   })
   .catch(err => {
