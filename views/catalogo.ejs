@@ -109,6 +109,24 @@
             </div>
           </div>
         <% }) %>
+        <% Varios.forEach( (Product) => { %>
+          <div class="col-lg-3 col-md-4 col-sm-6 col-6 product-card">
+            <div class="card mb-3" style="width: 100%;">
+              <img src="img/Productos/<%= Product.Imagen %>" class="card-img-top" alt="Imagen del producto">
+              <div class="card-body">
+                <h5 class="card-title"><%= Product.Producto %></h5>
+                <p class="Precio">$<%= Product.Precio.toLocaleString('es-CO') %> COP</p>
+                <form action="/Agregarcart/<%= Product.id %>" method="POST">
+                  <div class="cantidad-container">
+                    <label for="cantidad-<%= Product.id %>" class="cantidad-label">Cantidad</label>
+                    <input type="number" name="cantidad" id="cantidad-<%= Product.id %>" class="form-control cantidad-input" placeholder="Cantidad" min="1" value="1">
+                  </div>
+                  <button type="submit" class="btn-agregar btn btn-primary">Agregar al carrito</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        <% }) %>
       </div>
       <div id="noProductMessage" class="text-center mt-4" style="display: none;">
         <h1>Producto no encontrado.</h1>
