@@ -3,7 +3,7 @@
     --blanco: #ffffff;
     --oscuro: #212121;
     --primario: #FFC107;
-    --secundario: #02539B;
+    --secundario: #0056B3;
     --gris: #757575;
     --grisClaro: #DFE9F3;
 }
@@ -162,6 +162,7 @@ ul {
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: white;
 }
 .servicio h3 {
     color: black;

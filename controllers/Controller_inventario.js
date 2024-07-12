@@ -243,6 +243,23 @@ module.exports.mostrarAceite = (req, res) => {
   res.status(500).send('Error mostrando datos');
 });
 };
+module.exports.mostrarlimpieza = (req, res) => {
+  const Cart = req.cookies.Anfomotos;
+  Promise.all([
+    Productos.find({Tipo: 'Limpieza'}).then(result => result || []),
+    Carrito.find({Cart: Cart}).then(result => result || [])
+  ])
+.then(([limpieza,Cart]) => {
+  res.render('limpieza', {
+    limpieza: limpieza,
+    Cart:Cart
+  });
+})
+.catch(err => {
+  console.error('Error mostrando datos', err);
+  res.status(500).send('Error mostrando datos');
+});
+};
 module.exports.mostrarRepuestos = (req, res) => {
   const Cart = req.cookies.Anfomotos;
   Promise.all([

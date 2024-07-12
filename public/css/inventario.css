@@ -20,21 +20,27 @@ body {
 }
 
 .Navegador li {
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
   padding: 10px;
-  background-color: #02539B; 
+  background-color: #ffca1efa; 
   border: 1px solid #cccccc; 
-  color: #ffffffff;
+  color: #ffffff;
   text-align: center; 
   flex: 1;
-  max-width: 20%; 
+  max-width: 25%; 
 }
-.Navegador :hover{
+
+.Navegador li:hover {
   background-color: #fcc203;
 }
+
 .Navegador a {
   text-decoration: none; 
   color: black; 
 }
+
 @media (max-width: 768px) {
   .Navegador li {
       padding: 5px;
@@ -43,7 +49,7 @@ body {
   }
   .Navegador a {
     font-size: 0.9em; /* Reducir tamaño de fuente */
-}
+  }
   .Navegador {
       padding: 5px 0;
   }
@@ -55,10 +61,9 @@ body {
       margin: 0 3px;
       max-width: 80px; 
   }
-
   .Navegador a {
-    font-size: 0.8em; /* Reducir tamaño de fuente */
-}
+    font-size: 0.6em; /* Reducir tamaño de fuente */
+  }
   .Navegador {
       padding: 3px 0;
   }

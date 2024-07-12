@@ -18,6 +18,9 @@ router.get('/aceites',inventario.mostrarAceite,(req,res)=>{
 router.get('/llantas',inventario.mostrarllantas,(req,res)=>{
     res.render('llantas')
 })
+router.get('/limpieza',inventario.mostrarlimpieza,(req,res)=>{
+    res.render('limpieza')
+})
 router.get('/repuestos',inventario.mostrarRepuestos,(req,res)=>{
     res.render('repuestos')
 })
