@@ -22,7 +22,7 @@
           <input type="text" name="Producto" id="Producto" placeholder="Nombre del producto" required>
           <select name="Tipo" id="Tipo" class="form-select form-select-sm" aria-label=".form-select-sm example" required onchange="showFields()">
             <option value="Null">Categoria</option>
-            <option value="Llantas">Llantas</option>
+            <option value="Productoss">Productoss</option>
             <option value="Aceites">Aceites</option>
             <option value="Repuestos">Repuestos</option>
             <option value="Herramientas">Herramientas</option>
@@ -44,67 +44,15 @@
     </div>
     <div class="container">
       <div class="row" id="productContainer">
-        <% Llantas.forEach( (Llanta) => { %>
+        <% Productos.forEach( (Productos) => { %>
           <div class="col-lg-3 col-md-4 col-sm-6 col-6 product-card">
             <div class="card mb-3" style="width: 100%;">
-              <img src="img/Productos/<%= Llanta.Imagen %>" class="card-img-top" alt="Imagen del producto">
+              <img src="img/Productos/<%= Productos.Imagen %>" class="card-img-top" alt="Imagen del producto">
               <div class="card-body">
-                <h5 class="card-title"><%= Llanta.Producto %></h5>
-                <p class="Precio" data-precio="<%= Llanta.Precio %>">$<%= Llanta.Precio.toLocaleString('es-CO') %> COP</p>
-                <a href="/EliminarProducto/<%= Llanta.id %>"><button type="submit" class="btn-agregar btn btn-danger">Eliminar</button></a> 
-                <button type="submit" class="btn-agregar btnModal btn btn-primary" data-id="<%= Llanta.id %>">Actualizar</button>
-              </div>
-            </div>
-          </div>
-        <% }) %>
-        <% Aceites.forEach( (Aceite) => { %>
-          <div class="col-lg-3 col-md-4 col-sm-6 col-6 product-card">
-            <div class="card mb-3" style="width: 100%;">
-              <img src="img/Productos/<%= Aceite.Imagen %>" class="card-img-top" alt="Imagen del producto">
-              <div class="card-body">
-                <h5 class="card-title"><%= Aceite.Producto %></h5>
-                <p class="Precio" data-precio="<%= Aceite.Precio %>">$<%= Aceite.Precio.toLocaleString('es-CO') %> COP</p>
-                <a href="/EliminarProducto/<%= Aceite.id %>"><button type="submit" class="btn-agregar btn btn-danger">Eliminar</button></a>
-                <button type="submit" class="btn-agregar btnModal btn btn-primary" data-id="<%= Aceite.id %>">Actualizar</button>
-              </div>
-            </div>
-          </div>
-        <% }) %>
-        <% Herramientas.forEach( (Herramienta) => { %>
-          <div class="col-lg-3 col-md-4 col-sm-6 col-6 product-card">
-            <div class="card mb-3" style="width: 100%;">
-              <img src="img/Productos/<%= Herramienta.Imagen %>" class="card-img-top" alt="Imagen del producto">
-              <div class="card-body">
-                <h5 class="card-title"><%= Herramienta.Producto %></h5>
-                <p class="Precio" data-precio="<%= Herramienta.Precio %>">$ <%= Herramienta.Precio.toLocaleString('es-CO') %> COP</p>
-                <a href="/EliminarProducto/<%= Herramienta.id %>"><button type="submit" class="btn-agregar btn btn-danger">Eliminar</button></a>
-                <button type="submit" class="btn-agregar btnModal btn btn-primary" data-id="<%= Herramienta.id %>">Actualizar</button>
-              </div>
-            </div>
-          </div>
-        <% }) %>
-        <% Repuestos.forEach( (Repuesto) => { %>
-          <div class="col-lg-3 col-md-4 col-sm-6 col-6 product-card">
-            <div class="card mb-3" style="width: 100%;">
-              <img src="img/Productos/<%= Repuesto.Imagen %>" class="card-img-top" alt="Imagen del producto">
-              <div class="card-body">
-                <h5 class="card-title"><%= Repuesto.Producto %></h5>
-                <p class="Precio" data-precio="<%= Repuesto.Precio %>">$<%= Repuesto.Precio.toLocaleString('es-CO') %> COP</p>
-                <a href="/EliminarProducto/<%= Repuesto.id %>"><button type="submit" class="btn-agregar btn btn-danger">Eliminar</button></a>
-                <button type="submit" class="btn-agregar btnModal btn btn-primary" data-id="<%= Repuesto.id %>">Actualizar</button>
-              </div>
-            </div>
-          </div>
-        <% }) %>
-        <% Varios.forEach( (Product) => { %>
-          <div class="col-lg-3 col-md-4 col-sm-6 col-6 product-card">
-            <div class="card mb-3" style="width: 100%;">
-              <img src="img/Productos/<%= Product.Imagen %>" class="card-img-top" alt="Imagen del producto">
-              <div class="card-body">
-                <h5 class="card-title"><%= Product.Producto %></h5>
-                <p class="Precio">$<%= Product.Precio.toLocaleString('es-CO') %> COP</p>
-                <a href="/EliminarProducto/<%= Product.id %>"><button type="submit" class="btn-agregar btn btn-danger">Eliminar</button></a>
-                <button type="submit" class="btn-agregar btnModal btn btn-primary" data-id="<%= Product.id %>">Actualizar</button>
+                <h5 class="card-title"><%= Productos.Producto %></h5>
+                <p class="Precio" data-precio="<%= Productos.Precio %>">$<%= Productos.Precio.toLocaleString('es-CO') %> COP</p>
+                <a href="/EliminarProducto/<%= Productos.id %>"><button type="submit" class="btn-agregar btn btn-danger">Eliminar</button></a> 
+                <button type="submit" class="btn-agregar btnModal btn btn-primary" data-id="<%= Productos.id %>">Actualizar</button>
               </div>
             </div>
           </div>

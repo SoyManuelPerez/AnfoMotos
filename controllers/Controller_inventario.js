@@ -187,20 +187,12 @@ module.exports.editar = (req,res) =>{
 module.exports.mostrar = (req, res) => {
   const Cart = req.cookies.Anfomotos;
   Promise.all([
-    Productos.find({Tipo: 'Llantas'}).then(result => result || []),
-    Productos.find({Tipo: 'Aceites'}).then(result => result || []),
-    Productos.find({Tipo: 'Herramientas'}).then(result => result || []),
-    Productos.find({Tipo: 'Repuestos'}).then(result => result || []),
-    Productos.find({Tipo: 'Varios'}).then(result => result || []),
+    Productos.find({}).then(result => result || []),
     Carrito.find({Cart: Cart}).then(result => result || [])
   ])
-  .then(([Llantas,Aceites, Herramientas, Repuestos,Varios ,Cart]) => {
+  .then(([Producto,Cart]) => {
     res.render('catalogo', {
-      Llantas: Llantas,
-      Aceites: Aceites,
-      Herramientas: Herramientas,
-      Repuestos: Repuestos,
-      Varios:Varios,
+      Producto: Producto,
       Cart:Cart
     });
   })
@@ -313,21 +305,9 @@ module.exports.mostrarVarios = (req, res) => {
 };
 //Mostrar en inventario
 module.exports.mostrarInventario = (req, res) => {
-  Promise.all([
-    Productos.find({Tipo: 'Llantas'}).then(result => result || []),
-    Productos.find({Tipo: 'Aceites'}).then(result => result || []),
-    Productos.find({Tipo: 'Herramientas'}).then(result => result || []),
-    Productos.find({Tipo: 'Repuestos'}).then(result => result || []),
-    Productos.find({Tipo: 'Varios'}).then(result => result || [])
-  ])
-  .then(([Llantas,Aceites, Herramientas,  Repuestos,Varios]) => {
-    res.render('inventario', {
-      Llantas: Llantas,
-      Aceites: Aceites,
-      Herramientas: Herramientas,
-      Repuestos: Repuestos,
-      Varios:Varios
-    });
+    Productos.find({})
+  .then(result => {
+    res.render('inventario', {Productos:result});
   })
   .catch(err => {
     console.error('Error mostrando datos', err);

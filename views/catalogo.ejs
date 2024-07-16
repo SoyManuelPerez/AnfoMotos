@@ -37,89 +37,17 @@
     </div>
     <div class="container">
       <div class="row" id="productContainer">
-        <% Llantas.forEach( (Llanta) => { %>
+        <% Producto.forEach( (Producto) => { %>
           <div class="col-lg-3 col-md-4 col-sm-6 col-6 product-card">
             <div class="card mb-3" style="width: 100%;">
-              <img src="img/Productos/<%= Llanta.Imagen %>" class="card-img-top" alt="Imagen del producto">
+              <img src="img/Productos/<%= Producto.Imagen %>" class="card-img-top" alt="Imagen del producto">
               <div class="card-body">
-                <h5 class="card-title"><%= Llanta.Producto %></h5>
-                <p class="Precio">$<%= Llanta.Precio.toLocaleString('es-CO') %> COP</p>
-                <form action="/Agregarcart/<%= Llanta.id %>" method="POST">
+                <h5 class="card-title"><%= Producto.Producto %></h5>
+                <p class="Precio">$<%= Producto.Precio.toLocaleString('es-CO') %> COP</p>
+                <form action="/Agregarcart/<%= Producto.id %>" method="POST">
                   <div class="cantidad-container">
-                    <label for="cantidad-<%= Llanta.id %>" class="cantidad-label">Cantidad</label>
-                    <input type="number" name="cantidad" id="cantidad-<%= Llanta.id %>" class="form-control cantidad-input" min="1" value="1">
-                  </div>
-                  <button type="submit" class="btn-agregar btn btn-primary">Agregar al carrito</button>
-                </form>
-              </div>
-            </div>
-          </div>
-        <% }) %>
-        <% Aceites.forEach( (Aceite) => { %>
-          <div class="col-lg-3 col-md-4 col-sm-6 col-6 product-card">
-            <div class="card mb-3" style="width: 100%;">
-              <img src="img/Productos/<%= Aceite.Imagen %>" class="card-img-top" alt="Imagen del producto">
-              <div class="card-body">
-                <h5 class="card-title"><%= Aceite.Producto %></h5>
-                <p class="Precio">$<%= Aceite.Precio.toLocaleString('es-CO') %> COP</p>
-                <form action="/Agregarcart/<%= Aceite.id %>" method="POST">
-                  <div class="cantidad-container">
-                    <label for="cantidad-<%= Aceite.id %>" class="cantidad-label">Cantidad</label>
-                    <input type="number" name="cantidad" id="cantidad-<%= Aceite.id %>" class="form-control cantidad-input" placeholder="Cantidad" min="1" value="1">
-                  </div>
-                  <button type="submit" class="btn-agregar btn btn-primary">Agregar al carrito</button>
-                </form>
-              </div>
-            </div>
-          </div>
-        <% }) %>
-        <% Herramientas.forEach( (Herramienta) => { %>
-          <div class="col-lg-3 col-md-4 col-sm-6 col-6 product-card">
-            <div class="card mb-3" style="width: 100%;">
-              <img src="img/Productos/<%= Herramienta.Imagen %>" class="card-img-top" alt="Imagen del producto">
-              <div class="card-body">
-                <h5 class="card-title"><%= Herramienta.Producto %></h5>
-                <p class="Precio">$ <%= Herramienta.Precio.toLocaleString('es-CO') %> COP</p>
-                <form action="/Agregarcart/<%= Herramienta.id %>" method="POST">
-                  <div class="cantidad-container">
-                    <label for="cantidad-<%= Herramienta.id %>" class="cantidad-label">Cantidad</label>
-                    <input type="number" name="cantidad" id="cantidad-<%= Herramienta.id %>" class="form-control cantidad-input" placeholder="Cantidad" min="1" value="1">
-                  </div>
-                  <button type="submit" class="btn-agregar btn btn-primary">Agregar al carrito</button>
-                </form>
-              </div>
-            </div>
-          </div>
-        <% }) %>
-        <% Repuestos.forEach( (Repuesto) => { %>
-          <div class="col-lg-3 col-md-4 col-sm-6 col-6 product-card">
-            <div class="card mb-3" style="width: 100%;">
-              <img src="img/Productos/<%= Repuesto.Imagen %>" class="card-img-top" alt="Imagen del producto">
-              <div class="card-body">
-                <h5 class="card-title"><%= Repuesto.Producto %></h5>
-                <p class="Precio">$<%= Repuesto.Precio.toLocaleString('es-CO') %> COP</p>
-                <form action="/Agregarcart/<%= Repuesto.id %>" method="POST">
-                  <div class="cantidad-container">
-                    <label for="cantidad-<%= Repuesto.id %>" class="cantidad-label">Cantidad</label>
-                    <input type="number" name="cantidad" id="cantidad-<%= Repuesto.id %>" class="form-control cantidad-input" placeholder="Cantidad" min="1" value="1">
-                  </div>
-                  <button type="submit" class="btn-agregar btn btn-primary">Agregar al carrito</button>
-                </form>
-              </div>
-            </div>
-          </div>
-        <% }) %>
-        <% Varios.forEach( (Product) => { %>
-          <div class="col-lg-3 col-md-4 col-sm-6 col-6 product-card">
-            <div class="card mb-3" style="width: 100%;">
-              <img src="img/Productos/<%= Product.Imagen %>" class="card-img-top" alt="Imagen del producto">
-              <div class="card-body">
-                <h5 class="card-title"><%= Product.Producto %></h5>
-                <p class="Precio">$<%= Product.Precio.toLocaleString('es-CO') %> COP</p>
-                <form action="/Agregarcart/<%= Product.id %>" method="POST">
-                  <div class="cantidad-container">
-                    <label for="cantidad-<%= Product.id %>" class="cantidad-label">Cantidad</label>
-                    <input type="number" name="cantidad" id="cantidad-<%= Product.id %>" class="form-control cantidad-input" placeholder="Cantidad" min="1" value="1">
+                    <label for="cantidad-<%= Producto.id %>" class="cantidad-label">Cantidad</label>
+                    <input type="number" name="cantidad" id="cantidad-<%= Producto.id %>" class="form-control cantidad-input" min="1" value="1">
                   </div>
                   <button type="submit" class="btn-agregar btn btn-primary">Agregar al carrito</button>
                 </form>
